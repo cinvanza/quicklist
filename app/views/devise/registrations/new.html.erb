@@ -4,6 +4,24 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <%= f.input :first_name,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "first_name" }%>
+    <%= f.input :last_name,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "last_name" }%>
+    <%= f.input :country,
+                collection: ["United States", "Canada", "Mexico", "United Kingdom", "Germany", "France"],
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "country" }%>
+    <%= f.input :currency,
+                collection: ["USD", "CAD", "MXN", "GBP", "EUR", "JPY"],
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "currency" }%>
     <%= f.input :email,
                 required: true,
                 autofocus: true,
