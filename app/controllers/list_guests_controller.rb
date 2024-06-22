@@ -1,12 +1,13 @@
 class ListGuestsController < ApplicationController
   def create
-    @user = User.find_by(email: "user@example.com")
+    @user = User.find_by(email: "jose@email.com")
 
     if @user
       @list_guest = ListGuest.create(user_id: @user.id, email: @user.email)
 
       if @list_guest.persisted?
         render json: { message: 'Guest successfully added to the list' }, status: :created
+        
       else
         render json: { errors: @list_guest.errors.full_messages }, status: :unprocessable_entity
       end
