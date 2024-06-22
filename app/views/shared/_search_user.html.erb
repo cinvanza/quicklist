@@ -1,0 +1,12 @@
+<h1>Search for an user</h1>
+
+<%= form_with url: new_list_list_guest_path, method: :get, local: true do |form| %>
+  <div class="field">
+    <%= form.label :email, "Enter Email" %>
+    <%= form.email_field :email, placeholder: "example@example.com" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Search' %>
+  </div>
+<% end %>
