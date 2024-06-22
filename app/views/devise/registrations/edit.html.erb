@@ -16,17 +16,14 @@
                 input_html: { autocomplete: "first_name" } %>
     <%= f.input :last_name,
                 required: true,
-                autofocus: true,
                 input_html: { autocomplete: "last_name" } %>
     <%= f.input :country,
-                collection: ["United States", "Canada", "Mexico", "United Kingdom", "Germany", "France"],
+                collection: [ "Argentina", "United States", "Canada", "Mexico", "United Kingdom", "Germany", "France"],
                 required: true,
-                autofocus: true,
                 input_html: { autocomplete: "country" }%>
     <%= f.input :currency,
                 collection: ["USD", "CAD", "MXN", "GBP", "EUR", "JPY"],
                 required: true,
-                autofocus: true,
                 input_html: { autocomplete: "currency" }%>
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
