@@ -5,5 +5,5 @@ class List < ApplicationRecord
   has_many :products
   has_many :list_guests
   has_many :reviews
-  validates :name, presence: true
+  validates :name, :access_type, :budget, presence: true
 end
