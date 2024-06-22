@@ -10,9 +10,58 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_21_005302) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_22_144045) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "list_guests", force: :cascade do |t|
+    t.bigint "list_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["list_id"], name: "index_list_guests_on_list_id"
+    t.index ["user_id"], name: "index_list_guests_on_user_id"
+  end
+
+  create_table "lists", force: :cascade do |t|
+    t.string "name"
+    t.date "date"
+    t.integer "access_type"
+    t.float "budget"
+    t.integer "status"
+    t.bigint "tag_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "supermarket_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["supermarket_id"], name: "index_lists_on_supermarket_id"
+    t.index ["tag_id"], name: "index_lists_on_tag_id"
+    t.index ["user_id"], name: "index_lists_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "comment"
+    t.integer "rating"
+    t.bigint "user_id", null: false
+    t.bigint "list_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["list_id"], name: "index_reviews_on_list_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "supermarkets", force: :cascade do |t|
+    t.string "name"
+    t.string "city"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,4 +75,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_21_005302) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "list_guests", "lists"
+  add_foreign_key "list_guests", "users"
+  add_foreign_key "lists", "supermarkets"
+  add_foreign_key "lists", "tags"
+  add_foreign_key "lists", "users"
+  add_foreign_key "reviews", "lists"
+  add_foreign_key "reviews", "users"
 end
