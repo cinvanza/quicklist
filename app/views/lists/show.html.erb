@@ -1,0 +1,15 @@
+<h1><%= @list.name %></h1>
+
+<p><%= @list.name %></p>
+
+<ul>
+  <% @list.products.each do |item| %>
+    <p><%= item.name %></p>
+    <p><%= item.brand %></p>
+    <p><%= item.price %></p>
+    <p><%= item.quantity %></p>
+    <%= link_to 'Edit item', edit_list_path(@list) %>
+  <% end %>
+</ul>
+<%= link_to 'Back', lists_path %>
+<%= link_to 'Add Product', new_list_product_path(list_id: @list.id) %>
