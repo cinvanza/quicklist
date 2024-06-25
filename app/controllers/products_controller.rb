@@ -13,6 +13,7 @@ class ProductsController < ApplicationController
     @list = List.find(params[:list_id])
   end
 
+
   def edit
     @product = Product.find(params[:id])
   end
