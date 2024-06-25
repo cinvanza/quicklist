@@ -1,0 +1,33 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Add a guest to your list
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" data-controller="search-email">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Select a guest</h5>
+      </div>
+      <div class="modal-body">
+       <%= form_with url: list_list_guests_path(params[:id]), method: :post, local: true, data: { controller: "search-email", action: "submit->search-email#update" } do |form| %>
+          <div class="field" data-search-email-target="input">
+            <%= form.label :email, "Enter Email" %>
+            <%= form.email_field :email, placeholder: "example@example.com" %>
+          </div>
+
+          <div class="actions">
+            <%= form.submit 'Search' %>
+          </div>
+        <% end %>
+
+<div data-search-email-target="results"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-action="click->search-email#createUser">Add a guest</button>
+      </div>
+    </div>
+  </div>
+</div>
