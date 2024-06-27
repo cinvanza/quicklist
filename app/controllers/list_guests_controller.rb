@@ -3,26 +3,37 @@ class ListGuestsController < ApplicationController
     @list_guest = ListGuest.new
   end
 
-
   def create
+    success_count = 0
+    failure_count = 0
 
-    user = User.find_by(email: params[:email])
+    params[:user_ids].each do |user_id|
+      next if user_id.blank?
 
-    if user
-      @list_guest = ListGuest.new
-      @list_guest.user = user
-      @list_guest.list_id = params[:list_id]
+      user = User.find_by(id: user_id)
 
-      if @list_guest.save
-        redirect_to list_path(params[:list_id]) , notice: 'Guest was successfully created.'
+      if user
+        @list_guest = ListGuest.new(user: user, list_id: params[:list_id])
+
+        if @list_guest.save
+          success_count += 1
+        else
+          failure_count += 1
+        end
       else
-        redirect_to list_path(params[:list_id]), notice: 'User not found'
+        failure_count += 1
       end
-    else
-      flash[:alert] = 'User not found'
-      redirect_to list_path(params[:list_id])
-
     end
+
+    if success_count > 0
+      flash[:notice] = "#{success_count} guest(s) were successfully created."
+    end
+
+    if failure_count > 0
+      flash[:alert] = "#{failure_count} user(s) could not be added."
+    end
+
+    redirect_to list_path(params[:list_id])
   end
 
   private

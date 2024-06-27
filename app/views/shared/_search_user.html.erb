@@ -11,23 +11,26 @@
         <h5 class="modal-title" id="exampleModalLabel">Select a guest</h5>
       </div>
       <div class="modal-body">
-       <%= form_with url: list_list_guests_path(params[:id]), method: :post, local: true, data: { controller: "search-email", action: "submit->search-email#update" } do |form| %>
-          <div class="field" data-search-email-target="input">
+       <%= form_with url: list_list_guests_path(params[:id]), method: :post, local: true do |form| %>
+          <div class="field">
             <%= form.label :email, "Enter Email" %>
-            <%= form.email_field :email, placeholder: "example@example.com" %>
+            <%= form.select :user_ids, User.all.map { |user| [user.email, user.id] }, {}, { id: 'select-state', multiple:true } %>
           </div>
 
           <div class="actions">
-            <%= form.submit 'Search' %>
+            <%= form.submit 'Add a guest' %>
           </div>
         <% end %>
-
-<div data-search-email-target="results"></div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-action="click->search-email#createUser">Add a guest</button>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+new TomSelect("#select-state",{
+	maxItems: 3
+});
+</script>
