@@ -3,7 +3,14 @@
 <div class="banner">
 
 </div>
+<%# arrow-down %>
+ <div data-controller="arrow">
+  <div class="arrow-down" data-action="click->arrow#scrollDown">
+    <i class="fa fa-arrow-down"></i>
+  </div>
 
+</div>
+  </div>
   <%= link_to new_user_session_path, class: 'card-container' do %>
     <div class="card-container-title">
       <h3>Create grocery list quickly</h3>
