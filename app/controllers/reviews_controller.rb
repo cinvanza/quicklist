@@ -1,8 +1,9 @@
 class ReviewsController < ApplicationController
-before_action :set_list, only: %i[new create]
+before_action :set_list, only: %i[new create index]
 
   def index
-    @reviews = Review.all
+    @reviews = Review.where(list_id: params[:list_id])
+    @review = Review.new
   end
 
   def show
@@ -19,7 +20,7 @@ before_action :set_list, only: %i[new create]
     @review.list_id = @list.id
     @review.user = current_user
     if @review.save
-      redirect_to list_path(@list), notice: 'Review posted successfully'
+      redirect_to list_reviews_path(@list), notice: 'Review posted successfully'
     else
       render :new, status: :unprocessable_entity
     end
