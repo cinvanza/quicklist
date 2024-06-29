@@ -1,19 +1,34 @@
 <div class="container">
-  <% @lists = List.all %>
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">List Name</th>
-        <th scope="col">Comment</th>
-        <th scope="col">Action</th>
-      </tr>
-    </thead>
-    <% @lists.each do |list| %>
-    <tbody>
-      <td><%= list.name %></td>
-      <td></td>
-    </tbody>
-    <% end %>
-  </table>
-  <%= link_to 'Add Review', new_list_review_path, class:'btn btn-primary' %>
+  <% @reviews.each do |review| %>
+  <ul>
+    <li>Comment: <%= review.comment %></li>
+    <li>Rating: <%= review.rating %></li>
+  </ul>
+  <% end %>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Review</button>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Rate this list</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <%= simple_form_for [@list, @review], url: list_reviews_path(@list) do |f| %>
+            <%= f.input :comment, label: 'Comment:' %>
+            <%= f.input :rating, collection: (1..5).to_a, label: "Rate this list", input_html: {data: {controller: "star-rating"}} %>
+          <div class="d-grid gap-2 d-md-block">
+            <%= f.button :submit, "Post Review", class: 'btn btn-primary'%>
+          </div>
+          <% end %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

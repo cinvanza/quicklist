@@ -39,6 +39,11 @@ class ListsController < ApplicationController
     redirect_to lists_path
   end
 
+  def reviews
+    @list = List.find(params[:id])
+    @reviews = @list.reviews
+  end
+
   private
 
   def list_params
