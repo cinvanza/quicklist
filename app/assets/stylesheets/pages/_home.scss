@@ -8,19 +8,15 @@
 }
 
 
-.banner{
-  background-image: url('logo-banner.png');
-  height: 75vh;
-  padding: 0.5rem;
-  background-size: cover;
-  background-position: center;
-  box-sizing: border-box;
-  overflow: hidden;
-  background-size: contain;
+#banner img {
+  width: 100%;
+  height: auto;
 }
 
 .card-container{
   max-width: 400px;
+  width: 388px;
+  height: 200px;
   text-align: center;
   margin: 20px auto;
   padding: 20px;
@@ -50,38 +46,26 @@
 }
 
 
-  #create-list-icon {
-    width: 150px;
-    height: 150px;
-    background-image:url('checklist-icon.png');
-    background-size: cover;
-    background-position: center;
-    border-radius: 50%;
-    margin: 0 auto;
-  }
+#create-list-icon, #share-icon, #budget-icon {
+  width: 150px;
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  margin: 0 auto;
+}
 
-  #share-icon{
-    width: 150px;
-    height: 150px;
-    background-image:url('share-icon.png');
-    background-size: cover;
-    background-position: center;
-    border-radius: 50%;
-    margin: 0 auto;
-  }
+#share-icon {
+  background-image: url('share-icon.png');
+}
 
+#budget-icon {
+  background-image: url('budget-icon.png');
+}
 
-  #budget-icon{
-    width: 150px;
-    height: 150px;
-    background-image:url('budget-icon.png');
-    background-size: cover;
-    background-position: center;
-    border-radius: 50%;
-    margin: 0 auto;
-  }
-
-
+#create-list-icon {
+  background-image: url('checklist-icon.png');
+}
 @media (max-width: 768px) {
   .card-container {
     padding: 15px;
@@ -111,20 +95,15 @@
     font-size: 0.9em;
   }
 
-  #share-icon {
+  #share-icon, #budget-icon, #create-list-icon {
     width: 100px;
     height: 100px;
-}
+  }
 
-#budget-icon {
-  width: 100px;
-  height: 100px;
+  .banner img {
+  width: 100%;
+  height: auto;
 }
-#create-list-icon {
-  width: 100px;
-  height: 100px;
-}
-
 }
 
 .arrow-down {
@@ -132,4 +111,22 @@
   font-size: 24px;
   text-align: center;
   margin: 20px;
+}
+
+.container-carousel {
+  margin: 20px;
+}
+
+.carousel-item img {
+  border-radius: 20px; /* Ajusta el valor para cambiar el radio de las esquinas */
+}
+
+.carousel-caption h5 {
+  color: white; /* Color del título */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Sombra del texto para mejorar la legibilidad */
+}
+
+.carousel-caption p {
+  color: white; /* Color del texto */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Sombra del texto para mejorar la legibilidad */
 }
