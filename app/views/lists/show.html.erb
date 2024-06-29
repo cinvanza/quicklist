@@ -12,17 +12,23 @@
   </div>
 </div>
 
-  <ul>
-    <% @list.products.each do |item| %>
-      <p><%= item.name %></p>
-      <p><%= item.brand %></p>
-      <p><%= item.price %></p>
-      <p><%= item.quantity %></p>
-      <%= link_to 'Edit item', edit_list_path(@list) %>
-    <% end %>
-  </ul>
-  <%= link_to 'Back', lists_path %>
-  <%= link_to 'Add Product', new_list_product_path(list_id: @list.id) %>
+<ul>
+  <% @list.products.each do |item| %>
+  <li>
+    <p><%= item.name %></p>
+    <p><%= item.brand %></p>
+    <p><%= item.price %></p>
+    <p><%= item.quantity %></p>
+    <%= link_to 'Edit item', edit_list_product_path(@list, item) %>
+    <%= button_to 'Delete item', list_product_path(@list, item), method: :delete, data: { turbo_confirm: 'Are you sure?' } %>
+    </li>
+  <% end %>
+</ul>
+<%= link_to 'Back', lists_path %>
+<%= link_to 'Add Product', new_list_product_path(list_id: @list.id) %>
+
+<%= render 'shared/search_user' %>
+
   <!--Modal Trigger button-->
   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Review</button>
   <!--Modal-->

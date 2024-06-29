@@ -1,15 +1,6 @@
-<%= form_with(model: @product, url: new_list_product_path, method: :post) do |form| %>
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.number_field :price %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit "Add Product" %>
-  </div>
+<%= simple_form_for @product, url: list_products_path(@list.id), method: :post do |form| %>
+  <%= form.input :name %>
+  <%= form.input :price %>
+  <%= form.input :quantity %>
+  <%= form.button :submit, "Add Product" %>
 <% end %>

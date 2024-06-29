@@ -1,0 +1,36 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Add a guest to your list
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" data-controller="search-email">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Select a guest</h5>
+      </div>
+      <div class="modal-body">
+       <%= form_with url: list_list_guests_path(params[:id]), method: :post, local: true do |form| %>
+          <div class="field">
+            <%= form.label :email, "Enter Email" %>
+            <%= form.select :user_ids, User.all.map { |user| [user.email, user.id] }, {}, { id: 'select-state', multiple:true } %>
+          </div>
+
+          <div class="actions">
+            <%= form.submit 'Add a guest' %>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+new TomSelect("#select-state",{
+	maxItems: 3
+});
+</script>
