@@ -1,0 +1,33 @@
+.star-rating-container {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  height: 100%; /* Ensures container takes full height for vertical centering */
+}
+
+.star-rating {
+  display: flex;
+}
+
+.star {
+  font-size: 20px;
+  color: #ffd700; /* Gold color for stars */
+}
+
+.full-star::before {
+  content: '★';
+}
+
+.half-star::before {
+  content: '★';
+  color: #ffd700;
+  position: relative;
+  display: inline-block;
+  width: 50%;
+  overflow: hidden;
+}
+
+.empty-star::before {
+  content: '☆';
+  color: #d3d3d3; /* Light gray for empty stars */
+}
