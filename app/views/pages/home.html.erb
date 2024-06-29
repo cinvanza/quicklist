@@ -3,8 +3,28 @@
 <div class="banner">
 
 </div>
+<%# arrow-down %>
+ <div data-controller="arrow">
+  <div class="arrow-down" data-action="click->arrow#scrollDown">
+    <i class="fa fa-arrow-down"></i>
+  </div>
+
+</div>
+  </div>
+  <%= link_to new_user_session_path, class: 'card-container' do %>
+    <div class="card-container-title">
+      <h3>Create grocery list quickly</h3>
+    </div>
+    <div class="img-card"></div>
+    <div class="div-container-description">
+      <h4>Chose products, add description and prices</h4>
+    </div>
+  <% end %>
+
+   <%= link_to new_user_session_path, class: 'card-container' do %>
 
    <%= link_to new_list_path, class: 'card-container' do %>
+
     <div class="card-container-title">
       <h3>Create grocery list quickly</h3>
     </div>
@@ -68,3 +88,5 @@
 
 
 </div>
+
+</div class='container'>
