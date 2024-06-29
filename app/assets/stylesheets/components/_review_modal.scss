@@ -1,0 +1,30 @@
+  .modal-dialog {
+    position: fixed;
+    margin: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%; /* Ajusta esto según necesites */
+    transform: none; /* Remueve transformaciones previas si las hay */
+  }
+
+  .modal-body {
+    height: 500px;
+  }
+
+  /* Ajustes adicionales para asegurarse que el modal ocupe el ancho completo en móviles */
+  @media (max-width: 576px) {
+    .modal-dialog {
+      max-width: 100%;
+    }
+  }
+
+  /* Estilos para la transición desde abajo */
+  .modal.fade .modal-dialog {
+    transform: translateY(100%);
+    transition: transform 0.3s ease-out;
+  }
+
+  .modal.fade.show .modal-dialog {
+    transform: translateY(0);
+  }
