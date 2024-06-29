@@ -3,28 +3,33 @@
   display: flex;
   flex-direction: column;
   margin:auto;
-  padding:5px
+  padding:5px;
+  background-color: #5C9947
 }
 
 
 .banner{
   background-image: url('logo-banner.png');
-  height: 80vh;
-  padding: 1rem;
+  height: 75vh;
+  padding: 0.5rem;
   background-size: cover;
-   background-position: center;
+  background-position: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-size: contain;
 }
 
 .card-container{
   max-width: 400px;
-
-      margin: 20px auto;
-      padding: 20px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      background-color: #fff;
-      transition: transform 0.3s ease-in-out;
+  text-align: center;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: transform 0.3s ease-in-out;
+  text-decoration: none;
 }
 
 
@@ -44,15 +49,37 @@
   color: #555;
 }
 
-.img-card {
-  width: 50%;
-  height: 33%; /* Adjust the height as needed */
-  background-image: url('checklist.png'); /* Replace with your image URL */
-  background-size: cover;
-  background-position: center;
-  border-radius: 100%; /* Rounded corners */
-  margin: 10px 0; /* Spacing around the image */
-}
+
+  #create-list-icon {
+    width: 150px;
+    height: 150px;
+    background-image:url('checklist-icon.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    margin: 0 auto;
+  }
+
+  #share-icon{
+    width: 150px;
+    height: 150px;
+    background-image:url('share-icon.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    margin: 0 auto;
+  }
+
+
+  #budget-icon{
+    width: 150px;
+    height: 150px;
+    background-image:url('budget-icon.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    margin: 0 auto;
+  }
 
 
 @media (max-width: 768px) {
@@ -83,6 +110,21 @@
   .div-container-description h4 {
     font-size: 0.9em;
   }
+
+  #share-icon {
+    width: 100px;
+    height: 100px;
+}
+
+#budget-icon {
+  width: 100px;
+  height: 100px;
+}
+#create-list-icon {
+  width: 100px;
+  height: 100px;
+}
+
 }
 
 .arrow-down {

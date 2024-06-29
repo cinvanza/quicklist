@@ -1,10 +1,15 @@
-<div class="container w-50 shadow border p-3 mt-5">
-  <%= simple_form_for [@list, @review], url: list_reviews_path do |f| %>
-    <%= f.input :comment, label: 'Comment:' %>
-    <%= f.input :rating, label: 'Rating', collection: 0..5, prompt: "Provide a rating" %>
-    <div class="d-grid gap-2 d-md-block">
-      <%= f.button :submit, "Post Review", class: 'btn btn-primary'%>
-      <%= link_to 'Back', list_reviews_path, class:'btn btn-outline-primary m-3'%>
+<div class="container shadow border p-3 mt-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-6">
+      <!-- This div is centered and takes 6 columns -->
+      <%= simple_form_for [@list, @review], url: list_reviews_path do |f| %>
+        <%= f.input :comment, label: 'Comment:' %>
+        <%= f.input :rating, label: 'How do you rate this list?', collection: 0..5, prompt: "Provide a rating" %>
+        <div class="d-grid gap-2 d-md-block">
+          <%= f.button :submit, "Post Review", class: 'btn btn-primary'%>
+          <%= link_to 'Back', list_path(id: @list.id), class:'btn btn-outline-primary m-3'%>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+  </div>
 </div>

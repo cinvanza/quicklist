@@ -11,8 +11,9 @@
     <% @lists.each do |list| %>
     <tbody>
       <td><%= list.name %></td>
-      <td><%= link_to 'Add Review', new_list_review_path %></td>
+      <td></td>
     </tbody>
     <% end %>
   </table>
+  <%= link_to 'Add Review', new_list_review_path, class:'btn btn-primary' %>
 </div>
