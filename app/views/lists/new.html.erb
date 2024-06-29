@@ -1,0 +1,19 @@
+<h1>New List</h1>
+
+<%= simple_form_for @list, url: new_list_path, remote: true do |form| %>
+  <div class="field">
+    <%= form.input :name %>
+  </div>
+
+  <div class="field">
+    <%= form.select :access_type, List::ACCESS_TYPES %>
+  </div>
+
+  <div class="field">
+    <%= form.input :budget, label: "Budget (Optional)" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -6,4 +6,5 @@ class List < ApplicationRecord
   has_many :list_guests
   has_many :reviews
   validates :name, :access_type, :budget, presence: true
+  ACCESS_TYPES = ["Public", "Private"]
 end

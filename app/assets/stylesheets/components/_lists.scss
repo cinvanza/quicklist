@@ -1,0 +1,34 @@
+.container {
+  width: 80%;  /* Adjust container width */
+  margin: 0 auto;  /* Center the container horizontally */
+}
+
+.list {
+  list-style: none;   /* Remove default bullet points */
+  padding: 0;         /* Remove default padding */
+  margin: 0;          /* Remove default margin */
+}
+
+.list-item {
+  border: 1px solid #ddd;  /* Add a simple border */
+  border-radius: 3%;
+  padding: 1rem;         /* Add some padding */
+  margin-bottom: 10px;   /* Add spacing between list items */
+  display: flex;        /* Enable horizontal layout */
+  justify-content: space-between;  /* Spread elements evenly */
+  align-items: center;   /* Vertically align content */
+  background-color: #f9f9f9;  /* Set a light background color */
+}
+
+.list-title {
+  font-weight: bold;  /* Make the title bold */
+}
+
+.text-muted {
+  color: #999;  /* Set muted text color */
+}
+
+.view-all {
+  text-decoration: none;  /* Remove underline from link */
+  color: #333;            /* Set link color */
+}

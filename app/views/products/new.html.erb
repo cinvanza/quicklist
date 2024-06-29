@@ -1,6 +1,21 @@
 <%= simple_form_for @product, url: list_products_path(@list.id), method: :post do |form| %>
-  <%= form.input :name %>
-  <%= form.input :price %>
-  <%= form.input :quantity %>
-  <%= form.button :submit, "Add Product" %>
+  <div class="container">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <div class="mb-3">
+          <%= form.input :name, class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <%= form.input :price, class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <%= form.input :quantity, class: "form-control" %>
+        </div>
+        <div class="d-flex">
+          <%= link_to 'Back', list_path(@list), class: "btn btn-secondary me-auto" %>  <%= form.button :submit, "Add Product", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>
+
