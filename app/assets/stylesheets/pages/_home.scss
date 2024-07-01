@@ -16,7 +16,7 @@
   background-position: center;
   box-sizing: border-box;
   overflow: hidden;
-  background-size: contain;
+
 }
 
 .card-container{
@@ -114,15 +114,15 @@
   #share-icon {
     width: 100px;
     height: 100px;
-}
+  }
 
-#budget-icon {
-  width: 100px;
-  height: 100px;
-}
-#create-list-icon {
-  width: 100px;
-  height: 100px;
+  #budget-icon {
+    width: 100px;
+    height: 100px;
+  }
+  #create-list-icon {
+    width: 100px;
+    height: 100px;
 }
 
 }
