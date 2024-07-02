@@ -1,40 +1,25 @@
 <div class='container'>
-
-<div class="banner">
-
-</div>
-<%# arrow-down %>
- <div data-controller="arrow">
-  <div class="arrow-down" data-action="click->arrow#scrollDown">
-    <i class="fa fa-arrow-down"></i>
+  <div id="banner">
+    <img src="<%=image_url("logo-banner.png")%>" alt="QuickList Logo" />
   </div>
 
-</div>
+  <div data-controller="arrow">
+    <div class="arrow-down" data-action="click->arrow#scrollDown">
+      <i class="fa fa-arrow-down"></i>
+    </div>
   </div>
-  <%= link_to new_user_session_path, class: 'card-container' do %>
-    <div class="card-container-title">
-      <h3>Create grocery list quickly</h3>
-    </div>
-    <div class="img-card"></div>
-    <div class="div-container-description">
-      <h4>Chose products, add description and prices</h4>
-    </div>
-  <% end %>
 
-   <%= link_to new_user_session_path, class: 'card-container' do %>
-
-   <%= link_to new_list_path, class: 'card-container' do %>
-
+  <%= link_to new_list_path, class: 'card-container' do %>
     <div class="card-container-title">
       <h3>Create grocery list quickly</h3>
     </div>
     <div id='create-list-icon'></div>
     <div class="div-container-description">
-      <h4>Chose products, add description and prices</h4>
+      <h4>Choose products, add description and prices</h4>
     </div>
   <% end %>
 
-  <%= link_to new_list_list_guest_path, class: 'card-container' do %>
+  <%= link_to new_list_path, class: 'card-container' do %>
     <div class="card-container-title">
       <h3>Share your list</h3>
     </div>
@@ -54,39 +39,34 @@
     </div>
   <% end %>
 
-
-
-
-<div class="suggested-list-container">
-
-  <div class="suggested-list-card">
-    <div class="suggested-list-title">
-      <h3>Friday night list</h3>
+  <div class='container-carousel'>
+    <h3>Suggested List</h3>
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <%= link_to lists_path(params[id: 1]), class: 'carousel-item active' do %>
+                <img src="<%=image_url("game-night.jpg")%>" class="d-block w-100" alt="Game Night">
+                <div class="carousel-caption d-md-block">
+                    <h5>Game Night</h5>
+                    <p>Enjoy a fun game night with friends and family.</p>
+                </div>
+            <% end %>
+            <%= link_to lists_path(params[id: 1]), class: 'carousel-item' do %>
+                <img src="<%=image_url("christmas.jpg")%>" class="d-block w-100" alt="Christmas">
+                <div class="carousel-caption d-md-block">
+                    <h5>Christmas</h5>
+                    <p>Celebrate the holiday season with joy and warmth.</p>
+                </div>
+            <% end %>
+            <%= link_to lists_path(params[id: 1]), class: 'carousel-item' do %>
+                <img src="<%=image_url("birthday.jpg")%>" class="d-block w-100" alt="Birthday">
+                <div class="carousel-caption d-md-block">
+                    <h5>Birthday</h5>
+                    <p>Make your birthday special with wonderful memories.</p>
+                </div>
+            <% end %>
+        </div>
     </div>
-    <div class="suggested-list-image">
-    </div>
-  </div>
-
-  <div class="suggested-list-card">
-    <div class="suggested-list-title">
-      <h3>Friday night list</h3>
-    </div>
-    <div class="suggested-list-image">
-    </div>
-  </div>
-
-  <div class="suggested-list-card">
-    <div class="suggested-list-title">
-      <h3>Friday night list</h3>
-    </div>
-    <div class="suggested-list-image">
-    </div>
-  </div>
 </div>
 
-<div class="footer">
-
-
+  <div class="footer"></div>
 </div>
-
-</div class='container'>
