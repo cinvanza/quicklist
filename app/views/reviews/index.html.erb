@@ -1,9 +1,49 @@
 <div class="container">
   <% @reviews.each do |review| %>
-  <ul>
-    <li>Comment: <%= review.comment %></li>
-    <li>Rating: <%= review.rating %></li>
-  </ul>
+  <div class="card text-dark bg-light mb-3" style="max-width: 540px;">
+    <div class="row no-gutters">
+      <div class="row no-gutters">
+        <div class="col-3 d-flex align-items-center justify-content-center p-0 m-0">
+          <a href="#" class="img-fluid rounded-circle avatar-reviews-img">
+            <% if current_user.photo.present?  %>
+              <%= cl_image_tag current_user.photo.key, class: "img-fluid rounded-circle avatar-reviews-img", alt: "" %>
+            <% else  %>
+              <%= image_tag "user-logo.png", class: "img-fluid rounded-circle avatar-reviews-img", alt: "" %>
+            <% end %>
+          </a>
+        </div>
+        <div class="col-9 p-2 ml-1">
+          <p class="card-title mb-0"><strong><%= review.user.first_name %> <%= review.user.last_name %></strong></p>
+          <p class="card-text"><small class="text-muted"><%= review.created_at.strftime("%B %d, %Y %H:%M") %></small></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="card-body p-2">
+          <div class="star-rating-review-container mb-2">
+            <% rating = review.rating %>
+            <% full_stars = rating.floor %>
+            <% half_star = (rating - full_stars >= 0.5) ? 1 : 0 %>
+            <% empty_stars = 5 - full_stars - half_star %>
+
+            <% full_stars.times do %>
+              <span class="star-review-card full-star"></span>
+            <% end %>
+
+            <% if half_star == 1 %>
+              <span class="star-review-card half-star"></span>
+            <% end %>
+
+            <% empty_stars.times do %>
+              <span class="star-review-card empty-star"></span>
+            <% end %>
+            </div>
+          <p class="card-text"><%= review.comment %></p>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <% end %>
   <button type="button" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Review</button>
   <%= link_to 'Back', list_path(@list), class:"btn btn-primary m-2" %>
@@ -19,15 +59,11 @@
         <div class="modal-body">
           <%= simple_form_for [@list, @review], url: list_reviews_path(@list) do |f| %>
             <%= f.input :comment, label: 'Comment:' %>
-            <%= f.input :rating, collection: (1..5).to_a, label: "Rate this list", input_html: {data: {controller: "star-rating"}} %>
+            <%= f.input :rating, collection: (1..5).to_a, input_html: {data: {controller: "star-rating"}} %>
           <div class="d-grid gap-2 d-md-block">
-            <%= f.button :submit, "Post Review", class: 'btn btn-primary'%>
+            <%= f.button :submit, "Post Review", class: 'btn btn-primary rounded'%>
           </div>
           <% end %>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
