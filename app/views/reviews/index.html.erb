@@ -59,15 +59,11 @@
         <div class="modal-body">
           <%= simple_form_for [@list, @review], url: list_reviews_path(@list) do |f| %>
             <%= f.input :comment, label: 'Comment:' %>
-            <%= f.input :rating, collection: (1..5).to_a, label: "Rate this list", input_html: {data: {controller: "star-rating"}} %>
+            <%= f.input :rating, collection: (1..5).to_a, input_html: {data: {controller: "star-rating"}} %>
           <div class="d-grid gap-2 d-md-block">
-            <%= f.button :submit, "Post Review", class: 'btn btn-primary'%>
+            <%= f.button :submit, "Post Review", class: 'btn btn-primary rounded'%>
           </div>
           <% end %>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
