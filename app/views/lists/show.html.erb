@@ -1,6 +1,6 @@
 <div class="container">
 
-<div class="card text-center mb-3">
+<div class="card rounded text-center mb-3">
   <div class="card-body">
     <h5 class="card-title"><%= @list.name %></h5>
     <!--<div class="card-text" data-controller="star-rating"><%= @list.average_rating%></div>-->
@@ -23,6 +23,7 @@
         <span class="star empty-star"></span>
       <% end %>
     </div>
+    <p><small class="text-muted"><%= Review.count %> Reviews </small></p>
     <%= link_to 'View Reviews', list_reviews_path(@list),  class:"btn btn-primary"%>
   </div>
 </div>
