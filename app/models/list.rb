@@ -1,7 +1,7 @@
 class List < ApplicationRecord
   belongs_to :tag
   belongs_to :user
-  belongs_to :supermarket
+  belongs_to :supermarket, optional: true
   has_many :products
   has_many :list_guests
   has_many :reviews

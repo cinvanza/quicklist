@@ -8,4 +8,5 @@ Rails.application.routes.draw do
     resources :list_guests, only: [:new, :create]
   end
   resources :reviews, only: [:show, :destroy]
+  post '/lists/new' => 'lists#create'
 end
