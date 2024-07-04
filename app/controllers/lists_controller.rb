@@ -1,4 +1,6 @@
 class ListsController < ApplicationController
+  include BudgetHelper
+  helper_method :compare_budget
 
   def index
     @lists = List.all
