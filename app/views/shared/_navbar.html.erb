@@ -4,21 +4,21 @@
       <ul class="navbar-nav d-flex flex-row justify-content-around w-100">
         <% if user_signed_in? %>
           <li class="nav-item">
-            <%= link_to "#", class: "nav-link text-center" do %>
+            <%= link_to root_path, class: "nav-link text-center" do %>
               <i class="fas fa-home"></i>
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to "#", class: "nav-link text-center" do %>
-              <i class="fas fa-envelope"></i>
+            <%= link_to lists_path, class: "nav-link text-center" do %>
+              <i class="fas fa-list"></i>
             <% end %>
           </li>
           <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle text-center" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a href="#" class="nav-link text-center" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <% if current_user.photo.present? %>
                 <%= cl_image_tag current_user.photo.key, class: "avatar", alt: "dropdown menu" %>
               <% else %>
-                <%= image_tag "user-logo.png", class: "avatar", alt: "dropdown menu" %>
+                <i class="fas fa-user"></i>
               <% end %>
             </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
