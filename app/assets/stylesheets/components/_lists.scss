@@ -11,13 +11,19 @@
 
 .list-item {
   border: 1px solid #ddd;  /* Add a simple border */
-  border-radius: 3%;
   padding: 1rem;         /* Add some padding */
   margin-bottom: 10px;   /* Add spacing between list items */
   display: flex;        /* Enable horizontal layout */
   justify-content: space-between;  /* Spread elements evenly */
   align-items: center;   /* Vertically align content */
   background-color: #f9f9f9;  /* Set a light background color */
+  border-radius: 5px; /* Optional: Add rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow to list items */
+  transition: box-shadow 0.3s ease;
+}
+
+.list-item:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Add a stronger shadow on hover */
 }
 
 .list-title {
@@ -32,3 +38,37 @@
   text-decoration: none;  /* Remove underline from link */
   color: #333;            /* Set link color */
 }
+
+.green{
+  color: green;
+}
+
+.orange{
+color: orangered;
+}
+
+
+.btn-orange{ /* Remove default border */
+  border-radius: 15px; /* Adjust the border-radius for roundness */
+  cursor: pointer; /* Change cursor on hover */
+  font-size: 16px; /* Adjust font size */
+  transition: background-color 0.3s;
+  background-color: orange;
+  text-decoration: none;
+  }
+
+
+  .btn-green{ /* Remove default border */
+    border-radius: 15px; /* Adjust the border-radius for roundness */
+    cursor: pointer; /* Change cursor on hover */
+    font-size: 16px; /* Adjust font size */
+    transition: background-color 0.3s;
+    background-color: green;
+    text-decoration: none;
+    }
+
+    h1 {
+      text-align: center; /* Center text horizontally */
+    }
+
+
