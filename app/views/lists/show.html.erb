@@ -1,5 +1,5 @@
 <div class="container">
-
+<h1 class="card-title h1-lg"><strong><%= @list.name %></strong></h1>
 <%= link_to 'View Reviews', list_reviews_path(@list),  class:"btn btn-primary rounded"%>
 
 <h1> $ <%= compare_budget(@list.products).to_f %></h1>
