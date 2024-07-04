@@ -1,9 +1,12 @@
 <div class="container">
-  <div class="card text-center mb-3">
-  <div class="card-body" id='rating-card'>
+
+<div class="card rounded text-center mb-3">
+  <div class="card-body">
     <h5 class="card-title"><%= @list.name %></h5>
     <!--<div class="card-text" data-controller="star-rating"><%= @list.average_rating%></div>-->
-    <div class="star-rating-container mb-3">
+    <h1 style="font-size: 80px" class="m-0"><strong><%= @list.average_rating %></strong></h1>
+    <div class="star-rating-container m-0">
+
       <% rating = @list.average_rating %>
       <% full_stars = rating.floor %>
       <% half_star = (rating - full_stars >= 0.5) ? 1 : 0 %>
@@ -21,10 +24,15 @@
         <span class="star empty-star"></span>
       <% end %>
     </div>
+
    <%= link_to lists_path, class: "orange" do %>
   <i class="fa-solid fa-eye"></i>
  <% end %>
    <i class="fa-solid fa-comments"></i>
+
+
+    <p><small class="text-muted">Based on <%= @list.reviews.count %> Reviews </small></p>
+    <%= link_to 'View Reviews', list_reviews_path(@list),  class:"btn btn-primary rounded"%>
 
   </div>
 

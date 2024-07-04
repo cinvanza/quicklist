@@ -13,7 +13,14 @@
     <%= form.input :budget, label: "Budget (Optional)" %>
   </div>
 
+  <div class="field">
+    <%= form.input :tag_id, label: "Tag", collection: Tag.all %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
+<% if @list.errors.any? %>
+  <% end %>

@@ -5,12 +5,24 @@
   height: 50%; /* Ensures container takes full height for vertical centering */
 }
 
+.star-rating-review-container {
+  display: flex;
+  justify-content: left; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  height: 100%; /* Ensures container takes full height for vertical centering */
+}
+
 .star-rating {
   display: flex;
 }
 
 .star {
-  font-size: 20px;
+  font-size: 25px;
+  color: #ffd700; /* Gold color for stars */
+}
+
+.star-review-card {
+  font-size: 15px;
   color: #ffd700; /* Gold color for stars */
 }
 
