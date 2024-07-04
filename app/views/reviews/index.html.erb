@@ -1,52 +1,127 @@
 <div class="container">
-  <% @reviews.each do |review| %>
-  <div class="card text-dark bg-light mb-3" style="max-width: 540px;">
-    <div class="row no-gutters">
-      <div class="row no-gutters">
-        <div class="col-3 d-flex align-items-center justify-content-center p-0 m-0">
-          <a href="#" class="img-fluid rounded-circle avatar-reviews-img">
-            <% if current_user.photo.present?  %>
-              <%= cl_image_tag current_user.photo.key, class: "img-fluid rounded-circle avatar-reviews-img", alt: "" %>
-            <% else  %>
-              <%= image_tag "user-logo.png", class: "img-fluid rounded-circle avatar-reviews-img", alt: "" %>
-            <% end %>
-          </a>
-        </div>
-        <div class="col-9 p-2 ml-1">
-          <p class="card-title mb-0"><strong><%= review.user.first_name %> <%= review.user.last_name %></strong></p>
-          <p class="card-text"><small class="text-muted"><%= review.created_at.strftime("%B %d, %Y %H:%M") %></small></p>
-        </div>
-      </div>
+<!--MAIN CARD THAT CONTAINS ALL REVIEWS-->
+  <div class="card main-card-rounded w-100">
+    <!---->
+    <div class="card-body">
+      <!--ROW THAT CONTAINS BACK BUTTON WITH LIST TITLE-->
       <div class="row">
-        <div class="col-12">
-          <div class="card-body p-2">
-          <div class="star-rating-review-container mb-2">
-            <% rating = review.rating %>
-            <% full_stars = rating.floor %>
-            <% half_star = (rating - full_stars >= 0.5) ? 1 : 0 %>
-            <% empty_stars = 5 - full_stars - half_star %>
-
-            <% full_stars.times do %>
-              <span class="star-review-card full-star"></span>
-            <% end %>
-
-            <% if half_star == 1 %>
-              <span class="star-review-card half-star"></span>
-            <% end %>
-
-            <% empty_stars.times do %>
-              <span class="star-review-card empty-star"></span>
-            <% end %>
-            </div>
-          <p class="card-text"><%= review.comment %></p>
+        <div class="col-2">
+          <%= link_to list_path(@list) do %><i class="fa-solid fa-circle-chevron-left fa-2xl" style="color: #e78413;"></i><% end %>
         </div>
+        <div class="col-10 px-1">
+          <p class="card-title"><strong><%= @list.name %></strong></p>
         </div>
       </div>
+
+      <!--CARD THAT CONTAINS REVIEW OVERALL-->
+      <div class="card overall-card-bg mb-3">
+        <div class="card-body">
+          <div class="row g-0">
+            <div class='col-7 p-1'>
+              <div class="progress rounded">
+                <%= 5 %> <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                <div class="progress-bar rounded mt-2" role="progressbar" style="width: <%= progress(fivestar(@list.reviews)) %>%;" aria-valuenow="<%= fivestar(@list.reviews) %>" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="progress rounded">
+                <%= 4 %> <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                <div class="progress-bar rounded mt-2" role="progressbar" style="width: <%= progress(fourstar(@list.reviews)) %>%;" aria-valuenow="<%= fourstar(@list.reviews) %>" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="progress rounded">
+                <%= 3 %> <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                <div class="progress-bar rounded mt-2" role="progressbar" style="width: <%= progress(threestar(@list.reviews)) %>%;" aria-valuenow="<%= threestar(@list.reviews) %>" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="progress rounded">
+                <%= 2 %> <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                <div class="progress-bar rounded mt-2" role="progressbar" style="width: <%= progress(twostar(@list.reviews)) %>%;" aria-valuenow="<%= twostar(@list.reviews) %>" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="progress rounded">
+                <%= 1 %> <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                <div class="progress-bar rounded mt-2" role="progressbar" style="width: <%= progress(onestar(@list.reviews)) %>%;" aria-valuenow="<%= onestar(@list.reviews) %>" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+            <div class='col-5'>
+              <h1 style="font-size: 30px; text-align: right" class="m-0" style="align-items: right;"><strong><%= @list.average_rating %></strong></h1>
+              <div class="star-rating-container m-0">
+                <% rating = @list.average_rating %>
+                <% full_stars = rating.floor %>
+                <% half_star = (rating - full_stars >= 0.5) ? 1 : 0 %>
+                <% empty_stars = 5 - full_stars - half_star %>
+
+                <% full_stars.times do %>
+                  <span class="star full-star"></span>
+                <% end %>
+
+                <% if half_star == 1 %>
+                  <span class="star half-star"></span>
+                <% end %>
+
+                <% empty_stars.times do %>
+                  <span class="star empty-star"></span>
+                <% end %>
+              </div>
+              <p style="font-size: 13px; text-align: right"><small class="text-muted">Based on <%= @list.reviews.count %> Reviews </small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--LIST OF REVIEWS-->
+      <% @reviews.each do |review| %>
+      <div class="row no-gutters">
+        <div class="row no-gutters">
+          <div class="col-3 d-flex align-items-center justify-content-center p-0 m-0">
+            <a href="#" class="img-fluid rounded-circle avatar-reviews-img">
+              <% if current_user.photo.present?  %>
+                <%= cl_image_tag current_user.photo.key, class: "img-fluid rounded-circle avatar-reviews-img", alt: "" %>
+              <% else  %>
+                <%= image_tag "user-logo.png", class: "img-fluid rounded-circle avatar-reviews-img", alt: "" %>
+              <% end %>
+            </a>
+          </div>
+          <div class="col-9 p-2 ml-1">
+            <p class="card-title mb-0"><strong><%= review.user.first_name %> <%= review.user.last_name %></strong></p>
+            <p class="card-text"><small class="text-muted"><%= review.created_at.strftime("%B %d, %Y %H:%M") %></small></p>
+          </div>
+        </div>
+        <div class="row no-gutters">
+          <div class="col-12">
+            <div class="card-body p-2">
+              <div class="star-rating-review-container mb-2">
+                <% rating = review.rating %>
+                <% full_stars = rating.floor %>
+                <% half_star = (rating - full_stars >= 0.5) ? 1 : 0 %>
+                <% empty_stars = 5 - full_stars - half_star %>
+
+                <% full_stars.times do %>
+                  <span class="star-review-card full-star"></span>
+                <% end %>
+
+                <% if half_star == 1 %>
+                  <span class="star-review-card half-star"></span>
+                <% end %>
+
+                <% empty_stars.times do %>
+                  <span class="star-review-card empty-star"></span>
+                <% end %>
+              </div>
+              <p class="card-text"><%= review.comment %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--METODO QUE LE COLOCA UNA LINEA ESPACIADORA A TODOS LOS REVIEWS CON EXCEPCION AL ULTIMO-->
+      <% if review != @reviews.last %>
+        <hr>
+      <% end %>
+      <% end %>
+
+    <div class="d-grid gap-2 col-12 mx-auto">
+      <button type="button" class="btn btn-primary m-2 add-review-button" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Review</button>
+    </div>
+
     </div>
   </div>
-  <% end %>
-  <button type="button" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Review</button>
-  <%= link_to 'Back', list_path(@list), class:"btn btn-primary m-2" %>
+
 </div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
