@@ -11,10 +11,19 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
-
+@import "components/list";
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 body {
   font-family: 'Roboto', sans-serif;
-  background: linear-gradient(45deg, #8ed24d 0%, #007940 100%);
+
+}
+
+.orange-btn{
+  background-color: linear-gradient(#ffde59, #ff914d);
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
 }
