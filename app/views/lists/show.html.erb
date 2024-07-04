@@ -1,9 +1,8 @@
 <div class="container">
   <div class="card text-center mb-3">
-  <div class="card-body">
+  <div class="card-body" id='rating-card'>
     <h5 class="card-title"><%= @list.name %></h5>
     <!--<div class="card-text" data-controller="star-rating"><%= @list.average_rating%></div>-->
-    <h1 style="font-size: 80px" class="mb-1"><strong><%= @list.average_rating %></strong></h1>
     <div class="star-rating-container mb-3">
       <% rating = @list.average_rating %>
       <% full_stars = rating.floor %>
@@ -22,7 +21,11 @@
         <span class="star empty-star"></span>
       <% end %>
     </div>
-    <%= link_to 'View Reviews', list_reviews_path(@list),  class:"btn btn-primary"%>
+   <%= link_to lists_path, class: "orange" do %>
+  <i class="fa-solid fa-eye"></i>
+ <% end %>
+   <i class="fa-solid fa-comments"></i>
+
   </div>
 
   <div class="row row-cols-1 row-cols-md-2 g-2">
@@ -34,8 +37,13 @@
             <p class="card-text">Price: <%= item.price %></p>
             <p class="card-text">Quantity: <%= item.quantity %></p>
             <div class="d-flex justify-content-between">
-              <%= link_to 'Edit item', edit_list_product_path(@list, item), class: "btn btn-sm btn-outline-primary" %>
-              <%= button_to 'Delete item', list_product_path(@list, item), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: "btn btn-sm btn-outline-danger" %>
+              <%= link_to edit_list_product_path(@list, item), class: "green" do %>
+                <i class="fa-regular fa-pen-to-square"></i>
+              <% end %>
+              <%= link_to list_product_path(@list, item), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: "orange" do %>
+               <i class="fas fa-trash"></i>
+              <% end %>
+
             </div>
           </div>
         </div>
@@ -43,10 +51,13 @@
     <% end %>
 
   <div class="text-center mt-3 d-flex justify-content-between">
-    <%= link_to 'Back', lists_path, class: "btn btn-primary" %>
-    <%= link_to 'Add Product', new_list_product_path(list_id: @list.id), class: "btn btn-primary" %>
+    <%= link_to lists_path, class: "green" do %>
+      <i class="fas fa-arrow-left icon-white"></i>
+    <% end %>
+    <%= link_to new_list_product_path(list_id: @list.id), class: "green" do %>
+  <i class="fas fa-plus icon-white"></i>
+<% end %>
   </div>
 
   <%= render 'shared/search_user' %>
 </div>
-  

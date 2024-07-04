@@ -1,0 +1,76 @@
+  .btn-orange{ /* Remove default border */
+      border-radius: 15px; /* Adjust the border-radius for roundness */
+      cursor: pointer; /* Change cursor on hover */
+      font-size: 16px; /* Adjust font size */
+      transition: background-color 0.3s;
+      background-color: orange;
+      text-decoration: none;
+      }
+
+
+      .btn-green{ /* Remove default border */
+        border-radius: 15px; /* Adjust the border-radius for roundness */
+        cursor: pointer; /* Change cursor on hover */
+        font-size: 16px; /* Adjust font size */
+        transition: background-color 0.3s;
+        background-color: green;
+        text-decoration: none;
+        }
+
+        .green{
+          color: green;
+        }
+
+        .orange{
+        color: orangered;
+        }
+
+        .card-body{
+          background-color: white;
+        }
+
+        #rating-card {
+          padding: 10px; /* Adjust padding as needed */
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+
+        }
+
+        .card-title {
+          font-size: 18px; /* Adjust title font size */
+        }
+
+        .star-rating-container {
+          font-size: 14px; /* Adjust star rating font size */
+        }
+
+        .btn {
+          padding: 2px 10px; /* Adjust button padding */
+          font-size: 14px; /* Adjust button font size */
+        }
+
+
+        @media (max-width: 767px) {
+
+          #rating-card {
+            height:100px
+          }
+          .card-title {
+            font-size: 16px; /* Adjust title font size for mobile */
+          }
+
+          h1 {
+            font-size: 20px; /* Adjust h1 font size for mobile */
+          }
+
+          .star-rating-container {
+            font-size: 8px; /* Adjust star rating font size for mobile */
+          }
+
+          .btn {
+            padding: 5px 5px; /* Adjust button padding for mobile */
+            font-size: 8px; /* Adjust button font size for mobile */
+          }
+        }
