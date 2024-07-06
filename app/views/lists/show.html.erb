@@ -5,31 +5,18 @@
 <h1> $ <%= compare_budget(@list.products).to_f %></h1>
 
   <div class="row row-cols-1 row-cols-md-2 g-2">
-    <% @list.products.each do |item| %>
-      <div class="col">
-        <div class="card shadow-sm">  <div class="card-body">
-            <h5 class="card-title"><strong><%= item.name %></strong></h5>
-            <p class="card-text">Brand: <%= item.brand %></p>
-            <p class="card-text">Price: <%= item.price %></p>
-            <p class="card-text">Quantity: <%= item.quantity %></p>
-            <div class="d-flex justify-content-between">
-              <%= link_to edit_list_product_path(@list, item), class: "green" do %>
-                <i class="fa-regular fa-pen-to-square"></i>
-              <% end %>
-              <%= link_to list_product_path(@list, item), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: "orange" do %>
-               <i class="fas fa-trash"></i>
-              <% end %>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
+    <div id="products">
+      <%= render @list.products %>
+    </div>
 
     <div class="text-center mt-3 d-flex justify-content-between">
       <%= link_to 'Back', lists_path, class: "btn btn-primary" %>
       <%= link_to 'Add Product', new_list_product_path(list_id: @list.id), class: "btn btn-primary" %>
     </div>
     <%= render 'shared/search_user' %>
+    <%= render 'shared/search_products' %>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
+  Add product
+</button>
   </div>
 </div>
