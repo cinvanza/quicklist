@@ -24,7 +24,10 @@ class ProductsController < ApplicationController
     @list = List.find(params[:list_id])
     @product.list = @list
     if @product.save
-      redirect_to list_path(@list), notice: 'Product was successfully created.'
+      respond_to do|format|
+        format.turbo_stream
+        format.html {redirect_to list_path(@list), notice: 'Product was successfully created.'}
+      end
     else
       render :new, status: :unprocessable_entity
     end

@@ -1,0 +1,12 @@
+<%= turbo_stream.append "products", partial: "products/product", locals: { product: @product } %>
+<%= turbo_stream.replace "product_name" do %>
+
+      <input name="product[name]"
+            class="form-control"
+            placeholder="enter product"
+              data-dictionary-target= "input"
+              data-action ="keyup->dictionary#update"
+              id="product_name"
+          >
+    <% end %>
+
