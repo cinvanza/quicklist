@@ -1,30 +1,42 @@
 <div class="add-container">
 
-  <div class="my-lists-container">
-    <h1><strong>My Lists</strong></h1>
-    <a href="<%= new_list_path %>" class="orange d-flex justify-content-center align-items-center">
-      <i class="fas fa-plus fa-lg"></i>
-    </a>
-    <div class="recomended-lists-container">
-      <h1><strong>Recommended Lists</strong></h1>
-      <ul class="list">
-        <% @lists.each do |list| %>
-          <li class="list-item">
-            <div class="list-info">
-              <h5 class="list-title"><strong><%= list.name %></strong></h5>
-              <% if list.products.count > 2 %>
-                <p class="text-muted mb-0"><small><%= list.products.count %> products</small></p>
-              <% end %>
-            </div>
-            <a href="<%= list_path(list) %>" class="orange">
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </li>
-        <% end %>
-      </ul>
+  <div class="mylists-container">
+    <div class="card main-card-rounded w-100" style="border-style: none">
+
+      <div class="card-body">
+        <!--USERNAME + ADD LIST ICON SECTION-->
+        <div class="row mb-3 mt-3">
+          <div class="col-10">
+            <h1 style='text-align: left; font-size: 28px;'>Hello,<strong> <%= current_user.first_name %>! </strong></h1>
+          </div>
+          <div class="col-2 center-icon px-1 pt-1">
+            <%= link_to new_list_path do %><i class="fa-solid fa-circle-plus fa-2xl" style="color: #7c5bae;"></i><% end %>
+          </div>
+        </div>
+
+        <!--LIST CARDS WITH DIFFERENT COLORS-->
+        <div class="mylists-grid-container">
+          <% cont = 0 %>
+          <% @lists.each_slice(2).with_index do |listas, listas_index| %>
+            <% cont += 1 %>
+            <% minimalistic_colors = [
+              "#E57373", "#F06292", "#BA68C8", "#9575CD", "#7986CB",  # Reds and Purples
+              "#4FC3F7", "#4DB6AC", "#81C784",  # Blues, Greens, and Yellows
+              "#FFD54F", "#FFB74D", "#FF8A65", "#A1887F", "#90A4AE",  # Oranges, Browns, and Grays
+              "#F48FB1", "#CE93D8", "#B39DDB", "#9FA8DA", "#90CAF9" "#FFD54F", "#FFB74D", "#FF8A65", "#A1887F", "#90A4AE",]  # Orange, Violet, Teal %>
+            <div class="row px-3 py-1">
+              <% listas.each_with_index do |list, index| %>
+              <div class="col-6">
+                <button class="list-button list-button-text" style="background-color: <%= minimalistic_colors[(listas_index * 2 + index) % minimalistic_colors.size] %>"><%= link_to list.name, list_path(list), class: "list-button-text" %><i class="fa-solid fa-gift list-icon" style="color: #ffffff;"></i></button>
+               </div>
+               <% end %>
+              </div>
+          <% end %>
+        </div>
+
+      </div>
+
     </div>
   </div>
 
-  <footer class="d-flex justify-content-center align-items-center mt-auto" style="height: 60px;">
-    </footer>
 </div>
