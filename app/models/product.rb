@@ -1,4 +1,4 @@
 class Product < ApplicationRecord
   belongs_to :list
-  validates :name, :quantity, presence: true
+  validates :name, presence: true
 end
