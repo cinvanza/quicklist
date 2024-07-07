@@ -1,3 +1,32 @@
+<div class="show-container">
+  <div class="show-list-container">
+    <div class="card main-card-rounded w-100" style="border-style: none">
+
+      <div class="card-body">
+
+        <div class="row mb-3 mt-3">
+          <div class="col-2 center-icon px-1 pt-1">
+            <%= link_to lists_path do %><i class="fa-solid fa-circle-chevron-left fa-xl" style="color: #7c5bae;"></i><% end %>
+          </div>
+          <div class="col-7 pt-1">
+            <h1 style='text-align: center; font-size: 18px;'><strong> <%= @list.name %>! </strong></h1>
+          </div>
+          <!--ADD GUEST OR SHARE LIST-->
+          <div class="col-1 center-icon px-1 pt-1">
+            <%= link_to new_list_path do %><i class="fa-solid fa-user-plus fa-xl" style="color: #7c5bae;"></i><% end %>
+          </div>
+          <!--ADD A NEW PRODUCT-->
+          <div class="col-2 center-icon px-1 pt-1 mr-1">
+            <%= link_to new_list_product_path(list_id: @list.id) do %><i class="fa-solid fa-plus fa-xl" style="color: #7c5bae;"></i><% end %>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <div class="container">
 <h1 class="card-title h1-lg"><strong><%= @list.name %></strong></h1>
 <%= link_to 'View Reviews', list_reviews_path(@list),  class:"btn btn-primary rounded"%>
