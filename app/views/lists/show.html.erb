@@ -1,5 +1,34 @@
-<div class="container">
+<div class="show-container">
+  <div class="show-list-container">
+    <div class="card main-card-rounded w-100" style="border-style: none">
 
+      <div class="card-body">
+
+        <div class="row mb-3 mt-3">
+          <div class="col-2 center-icon px-1 pt-1">
+            <%= link_to lists_path do %><i class="fa-solid fa-circle-chevron-left fa-xl" style="color: #7c5bae;"></i><% end %>
+          </div>
+          <div class="col-7 pt-1">
+            <h1 style='text-align: center; font-size: 18px;'><strong> <%= @list.name %>! </strong></h1>
+          </div>
+          <!--ADD GUEST OR SHARE LIST-->
+          <div class="col-1 center-icon px-1 pt-1">
+            <%= link_to new_list_path do %><i class="fa-solid fa-user-plus fa-xl" style="color: #7c5bae;"></i><% end %>
+          </div>
+          <!--ADD A NEW PRODUCT-->
+          <div class="col-2 center-icon px-1 pt-1 mr-1">
+            <%= link_to new_list_product_path(list_id: @list.id) do %><i class="fa-solid fa-plus fa-xl" style="color: #7c5bae;"></i><% end %>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="container">
+<h1 class="card-title h1-lg"><strong><%= @list.name %></strong></h1>
 <%= link_to 'View Reviews', list_reviews_path(@list),  class:"btn btn-primary rounded"%>
 
 <h1> $ <%= compare_budget(@list.products).to_f %></h1>
@@ -9,36 +38,18 @@
 <%= render 'shared/search_products' %>
 
   <div class="row row-cols-1 row-cols-md-2 g-2">
-    <% @list.products.each do |item| %>
-      <div class="col">
-        <div class="card shadow-sm">  <div class="card-body">
-            <h5 class="card-title"><strong><%= item.name %></strong></h5>
-            <p class="card-text">Brand: <%= item.brand %></p>
-            <p class="card-text">Price: <%= item.price %></p>
-            <p class="card-text">Quantity: <%= item.quantity %></p>
-            <div class="d-flex justify-content-between">
-              <%= link_to edit_list_product_path(@list, item), class: "green" do %>
-                <i class="fa-regular fa-pen-to-square"></i>
-              <% end %>
-              <%= link_to list_product_path(@list, item), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: "orange" do %>
-               <i class="fas fa-trash"></i>
-              <% end %>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Add a guest to your list
-</button>
-<%= render 'shared/search_products' %>
+    <div id="products">
+      <%= render @list.products %>
+    </div>
 
     <div class="text-center mt-3 d-flex justify-content-between">
       <%= link_to 'Back', lists_path, class: "btn btn-primary" %>
       <%= link_to 'Add Product', new_list_product_path(list_id: @list.id), class: "btn btn-primary" %>
     </div>
     <%= render 'shared/search_user' %>
-
+    <%= render 'shared/search_products' %>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
+  Add product
+</button>
   </div>
 </div>

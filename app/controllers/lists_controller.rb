@@ -3,7 +3,9 @@ class ListsController < ApplicationController
   helper_method :compare_budget
 
   def index
+    session[:chosen_colors] ||= []
     @lists = List.all
+    session[:chosen_colors] << @color
   end
 
   def show

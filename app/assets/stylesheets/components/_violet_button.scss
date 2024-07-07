@@ -1,0 +1,29 @@
+.button-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  margin-top: 5px;
+}
+
+.violet-button {
+  display: inline-block; /* Allows margin and padding */
+  padding: 15px 30px; /* Larger touch area */
+  font-size: 16px; /* Legible text size */
+  color: #fff; /* Text color */
+  background-color: #7c5bae;
+  border: none; /* Remove default border */
+  border-radius: 40px; /* Rounded corners */
+  text-align: center; /* Center text */
+  text-decoration: none; /* Remove underline for links */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effects */
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .mobile-button {
+    width: 100%; /* Full-width button on smaller screens */
+    padding: 20px; /* Larger touch area */
+    font-size: 18px; /* Slightly larger text size */
+  }
+}
