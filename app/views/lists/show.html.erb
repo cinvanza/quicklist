@@ -3,6 +3,10 @@
 <%= link_to 'View Reviews', list_reviews_path(@list),  class:"btn btn-primary rounded"%>
 
 <h1> $ <%= compare_budget(@list.products).to_f %></h1>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Add product
+</button>
+<%= render 'shared/search_products' %>
 
   <div class="row row-cols-1 row-cols-md-2 g-2">
     <% @list.products.each do |item| %>
@@ -25,11 +29,16 @@
         </div>
       </div>
     <% end %>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Add a guest to your list
+</button>
+<%= render 'shared/search_products' %>
 
     <div class="text-center mt-3 d-flex justify-content-between">
       <%= link_to 'Back', lists_path, class: "btn btn-primary" %>
       <%= link_to 'Add Product', new_list_product_path(list_id: @list.id), class: "btn btn-primary" %>
     </div>
     <%= render 'shared/search_user' %>
+
   </div>
 </div>

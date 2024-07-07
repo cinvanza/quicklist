@@ -1,0 +1,30 @@
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" data-controller="dictionary">
+      <div class="modal-body pt-4">
+       <%= form_with url: list_path(params[:id]), method: :get  , local: true do |form|  %>
+          <div class="field">
+           <input type="text"
+       class="form-control"
+       placeholder="enter product"
+        data-dictionary-target= "input"
+        data-action ="keyup->dictionary#update"
+    >
+          </div>
+
+          <ul data-dictionary-target= "data">
+
+          </ul>
+
+          <div class="actions">
+            <%= form.submit 'Add a product'%>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-orange" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
