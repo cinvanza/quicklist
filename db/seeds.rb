@@ -9,13 +9,16 @@ Tag.destroy_all
 
 puts "Creating tags..."
 tags = Tag.create!([
-  {name: "Christmas"},
-  {name: "Halloween"},
-  {name: "Valentines"},
-  {name: "Birthday Party"},
-  {name: "Romantic Dinner"},
-  {name: "Graduation Party"},
-  {name: "Game Night"}
+  {name: "Christmas", image: "tree"},
+  {name: "Halloween", image: "ghost"},
+  {name: "Valentines", image: "heart"},
+  {name: "Birthday Party", image: "birthday-cake"},
+  {name: "Romantic Dinner", image: "wine-glass-alt"},
+  {name: "Graduation Party", image: "graduation-cap"},
+  {name: "Game Night", image: "gamepad"},
+  {name: "Home and Garden", image: "home"},
+  {name: "Daily Chores", image: "check"},
+  {name: "Kids Groceries", image: "apple-alt"}
 ])
 
 puts "Creating supermarkets..."
