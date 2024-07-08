@@ -18,7 +18,7 @@
               <i class="fas fa-comments"></i>
             <% end %>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropup">
             <a href="#" class="nav-link text-center" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <% if current_user.photo.present? %>
                 <%= cl_image_tag current_user.photo.key, class: "avatar", alt: "dropdown menu" %>
