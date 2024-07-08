@@ -1,6 +1,17 @@
 .navbar-lewagon {
-  justify-content: space-between;
-   background: linear-gradient(#ffde59, #ff914d);
+  background-color: #7c5bae;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 60px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+}
+
+.navbar-lewagon .nav-link:hover {
+  background-color: #d8d1e7;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -9,4 +20,10 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 40px;
+}
+
+.dropup .dropdown-menu {
+  top: auto;
+  bottom: 100%;
+  margin-bottom: 0;
 }
