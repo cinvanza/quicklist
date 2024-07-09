@@ -12,15 +12,18 @@
           <div class="col-7 pt-1">
             <h1 style='text-align: center; font-size: 18px;'><strong> <%= @list.name %>! </strong></h1>
           </div>
+          <div class= 'd-flex flex-row-reverse'>
           <!--ADD GUEST OR SHARE LIST-->
-          <div class="col-1 center-icon px-1 pt-1">
-            <%= link_to new_list_path do %><i class="fa-solid fa-user-plus fa-xl" style="color: #7c5bae;"></i><% end %>
+            <%=render 'shared/search_user' %>
+              <!--ADD A NEW PRODUCT-->
+            <%=render 'shared/search_products' %>
+            <div class="col-2 center-icon px-1 pt-1">
+              <%= link_to edit_list_path do %>
+                <i class="fa-solid fa-pen-to-square" style="color: #7c5bae;"></i>
+              <% end %>
+            </div>
+
           </div>
-          <!--ADD A NEW PRODUCT-->
-          <div class="col-2 center-icon px-1 pt-1 mr-1">
-            <%= link_to new_list_product_path(list_id: @list.id) do %><i class="fa-solid fa-plus fa-xl" style="color: #7c5bae;"></i><% end %>
-          </div>
-        </div>
 
         <!--BUDGET SECTION AND LIST CREATION DATE-->
         <div class="row mb-3 mt-5">
