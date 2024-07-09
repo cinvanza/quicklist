@@ -1,0 +1,26 @@
+<h1>Edit your list</h1>
+
+<%= simple_form_for @list, url: edit_list_path(@list), remote: true do |form| %>
+  <div class="form-control">
+    <%= form.input :name %>
+  </div>
+
+  <div class="form-control">
+    <%= form.select :access_type, List::ACCESS_TYPES %>
+  </div>
+
+  <div class="form-control">
+    <%= form.input :budget, label: "Budget (Optional)" %>
+  </div>
+
+  <div class="form-control">
+    <%= form.input :tag_id, label: "Tag", collection: Tag.all %>
+  </div>
+
+  <div class="actions text-center violet_button">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<% if @list.errors.any? %>
+  <% end %>

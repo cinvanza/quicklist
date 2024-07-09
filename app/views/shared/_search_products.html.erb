@@ -1,29 +1,37 @@
+<!-- Icon to trigger modal -->
+  <div class="col-2 center-icon px-1 pt-1">
+    <i class="fa-solid fa-plus fa-xl" style="color: #7c5bae;" data-toggle="modal" data-target="#exampleModal1"></i>
+  </div>
 
-
-<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModal1Label" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content" data-controller="dictionary">
-      <div class="modal-body pt-4">
-       <%= form_with(model:Product.new, url: list_products_path(params[:id]), method: :post  , local: true)  do |form|  %>
-          <div class="field">
-           <input name="product[name]"
-       class="form-control"
-       placeholder="enter product"
-        data-dictionary-target= "input"
-        data-action ="keyup->dictionary#update"
-        id="product_name"
-    >
-          </div>
-          <ul data-dictionary-target= "data">
-          </ul>
-          <div class="actions">
-            <%= form.submit 'Add a product'%>
-          </div>
-        <% end %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn-orange" data-dismiss="modal">Close</button>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModal1Label" aria-hidden="true">
+    <div class="modal-dialog custom-modal" role="document">
+      <div class="modal-content" data-controller="dictionary">
+        <div class="modal-body pt-4">
+          <%= form_with(model: Product.new, url: list_products_path(params[:id]), method: :post, local: true) do |form| %>
+            <div class="field">
+              <input name="product[name]"
+                     class="form-control"
+                     placeholder="enter product"
+                     data-dictionary-target="input"
+                     data-action="keyup->dictionary#update"
+                     id="product_name">
+            </div>
+            <ul data-dictionary-target="data">
+            </ul>
+            <div class="actions">
+              <%= form.submit 'Add product', class: 'rounded-button' %>
+            </div>
+          <% end %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+  <!-- jQuery, Popper.js, and Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

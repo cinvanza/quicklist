@@ -1,14 +1,39 @@
 // Specific CSS for your home-page
-.container{
+.container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding:20px;
   width: 100%;
   box-sizing: border-box;
-  background: linear-gradient(#ffde59, #ff914d);
+  background-color: #f3efef;
 }
 
+.container h2 {
+  align-items: flex-start;
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.form-check {
+  color: #afaeae;
+}
+
+.container .signin-btn {
+  padding: 10px 20px;
+  font-size: 20px;
+  height: 50px;
+  border-radius: 25px;
+  color: white;
+  background-color: #7c5bae;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .signin-btn {
+    width: 100%;
+  }
+}
 
 #banner img {
   width: 100%;
@@ -171,4 +196,50 @@
   color: #fff;
   text-decoration: none;
   font-size: 12px;
+}
+
+.sign-up-container{
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  padding:20px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #faf6f6;
+  border-radius: 5%;
+}
+
+.sign-up-container h1 {
+  color: rgb(45, 45, 102);
+  text-align: left;
+  font-size: 40px;
+}
+
+p {
+  color: #afaeae;
+}
+
+.form-label {
+  color: #afaeae;
+}
+
+.form-text{
+  color: #afaeae;
+}
+
+.sign-up-container .signup-btn {
+  padding: 10px 20px;
+  font-size: 20px;
+  height: 50px;
+  border-radius: 25px;
+  color: white;
+  background-color: #7c5bae;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .signup-btn {
+    width: 100%;
+  }
 }
