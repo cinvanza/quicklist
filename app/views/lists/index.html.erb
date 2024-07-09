@@ -33,10 +33,11 @@
                   <button class="list-button list-button-text" style="background-color: <%= minimalistic_colors[(listas_index * 2 + index) % minimalistic_colors.size] %>">
                     <%= link_to list.name, list_path(list), class: "list-button-text" %>
                     <% if list.tag %>
-                      <i data-controller="icons-tag" data-icons-tag-icon="<%= list.tag.image %>" data-icons-tag-target="icon" class="fa-solid fa-gift list-icon" style="color: #ffffff;"></i>
+                      <i class="fa-solid fa-<%= list.tag.image %> list-icon" style= "color:#ffffff "></i>
                     <% else %>
-                      <i class="fa-solid fa-gift list-icon" style="color: #ffffff;"></i>
-                    <% end %>
+                        <i class="fa-solid fa-gift list-icon" style="color: #ffffff;"></i>
+                     <% end %>
+
                   </button>
                 </div>
               <% end %>
