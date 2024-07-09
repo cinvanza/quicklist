@@ -1,36 +1,42 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Add a guest to your list
-</button>
+<div class="col-2 center-icon px-1 pt-1">
+  <i class="fa-solid fa-user-plus" style="color: #7c5bae; cursor: pointer;" data-toggle="modal" data-target="#exampleModal"></i>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog custom-modal" role="document">
     <div class="modal-content" data-controller="search-email">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Select a guest</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       <div class="modal-body">
-       <%= form_with url: list_list_guests_path(params[:id]), method: :post, local: true do |form| %>
+        <%= form_with url: list_list_guests_path(params[:id]), method: :post, local: true do |form| %>
           <div class="field">
             <%= form.label :email, "Enter Email" %>
-            <%= form.select :user_ids, User.all.map { |user| [user.email, user.id] }, {}, { id: 'select-state', multiple:true } %>
+            <%= form.select :user_ids, User.all.map { |user| [user.email, user.id] }, {}, { id: 'select-state', multiple: true } %>
           </div>
 
           <div class="actions">
-            <%= form.submit 'Add a guest' %>
+            <%= form.submit 'Add a guest', class: 'rounded-button' %>
           </div>
         <% end %>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn-orange" data-dismiss="modal">Close</button>
+        <button type="button" class="rounded-button" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
 
+<!-- TomSelect Initialization -->
 <script>
-new TomSelect("#select-state",{
-	maxItems: 3
-});
+  document.addEventListener('DOMContentLoaded', function() {
+    new TomSelect("#select-state", {
+      maxItems: 3
+    });
+  });
 </script>
