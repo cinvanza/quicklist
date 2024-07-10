@@ -1,24 +1,24 @@
-<nav class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-bottom">
+<nav class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-bottom purple-border">
   <div class="container-fluid d-flex justify-content-around">
     <ul class="navbar-nav d-flex flex-row justify-content-around w-100">
       <% if user_signed_in? %>
         <li class="nav-item">
-          <%= link_to root_path, class: "nav-link text-center" do %>
+          <%= link_to root_path, class: "text-center" do %>
             <i class="fas fa-home icon-color"></i>
           <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to lists_path, class: "nav-link text-center" do %>
+          <%= link_to lists_path, class: "text-center" do %>
             <i class="fa-solid fa-clipboard-list icon-color"></i>
           <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to lists_path, class: "nav-link text-center" do %>
+          <%= link_to lists_path, class: "text-center" do %>
             <i class="fas fa-comments icon-color"></i>
           <% end %>
         </li>
         <li class="nav-item dropup">
-          <a href="#" class="nav-link text-center" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a href="#" class="text-center" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <% if current_user.photo.present? %>
               <%= cl_image_tag current_user.photo.key, class: "avatar", alt: "dropdown menu" %>
             <% else %>
@@ -33,7 +33,7 @@
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to new_user_session_path, class: "nav-link text-center" do %>
+          <%= link_to new_user_session_path, class: "text-center" do %>
             <i class="fas fa-sign-in-alt icon-color"></i>
           <% end %>
         </li>
