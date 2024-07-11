@@ -73,7 +73,7 @@
             <% @list.products.each do |product| %>
               <div class="col-12 card budget-card-bg">
                 <div class="row g-0 m-3">
-                  <div class="col-2"><input class="form-check-input me-1" type="checkbox" value=""></div>
+                  <div class="col-2"><input class="form-check-input me-1" type="checkbox" value="<%= product.id %>"><%= 'checked' if product.checked %></div>
                   <div class="col-8" style="text-align: left"><%= product.name %></div>
                   <div class="col-2" style="text-align: right"><%= link_to edit_list_product_path(@list, product) do %><i class="fa-solid fa-ellipsis fa-xl" style="color: #7c5bae"></i><% end %></div>
                   </div>
@@ -90,3 +90,18 @@
   </div>
   <%= render 'shared/search_products' %>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    let productCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+
+    productCheckboxes.forEach(function(checkbox) {
+      checkbox.addEventListener('change', function() {
+        localStorage.setItem(checkbox.value, checkbox.checked);
+      });
+
+      let isChecked = localStorage.getItem(checkbox.value) === 'true';
+      checkbox.checked = isChecked;
+    });
+  });
+</script>
