@@ -311,3 +311,21 @@ p {
     width: 100%;
   }
 }
+
+.edit-list{
+  display: flex;
+  flex-direction: column;
+  padding:20px;
+  width: 100%;
+  background-color: #f3efef;
+}
+
+.edit-list h1 {
+  color: rgb(45, 45, 102);
+  text-align: left;
+  font-size: 40px;
+}
+
+.form-control {
+  border: none;
+}
