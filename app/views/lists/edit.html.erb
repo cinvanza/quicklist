@@ -1,5 +1,7 @@
 <h1>Edit your list</h1>
 
+<div>
+
 <%= simple_form_for @list, url: edit_list_path(@list), remote: true do |form| %>
   <div class="form-control">
     <%= form.input :name %>
@@ -24,3 +26,4 @@
 
 <% if @list.errors.any? %>
   <% end %>
+</div>

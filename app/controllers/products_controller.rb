@@ -24,9 +24,11 @@ class ProductsController < ApplicationController
     @list = List.find(params[:list_id])
     @product.list = @list
     if @product.save
-      respond_to do|format|
-        format.turbo_stream
-        format.html {redirect_to list_path(@list), notice: 'Product was successfully created.'}
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.append('products', partial: 'shared/products-list', locals: { product: @product })
+        end
+        format.html { redirect_to list_path(@list), notice: 'Product was successfully created.' }
       end
     else
       render :new, status: :unprocessable_entity

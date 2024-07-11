@@ -1,0 +1,22 @@
+<!--PRODUCT LIST SECTION-->
+        <div class="row m-3">
+          <% if @list.products.empty? %>
+          <div class="col-12 card budget-card-bg">
+            <div style="text-align: center" class="my-3">
+              <img src="<%=image_url("empty_list.png")%>" alt="No products yet" style="width: 225px; height: 225px" class="no-item-center-image mb-3"/>
+              <h1><strong>Empty List</strong></h1>
+              <p style="font-size: 15px" class="px-3">Your shopping list is currently empty. Feel free to add products to your list.</p>
+            </div>
+          </div>
+          <% else %>
+            <% @list.products.each do |product| %>
+              <div class="col-12 card budget-card-bg">
+                <div class="row g-0 m-3">
+                  <div class="col-2"><input class="form-check-input me-1" type="checkbox" value=""></div>
+                  <div class="col-8" style="text-align: left"><%= product.name %></div>
+                  <div class="col-2" style="text-align: right"><%= link_to edit_list_product_path(@list, product) do %><i class="fa-solid fa-ellipsis fa-xl" style="color: #7c5bae"></i><% end %></div>
+                  </div>
+                </div>
+              <% end %>
+          <% end %>
+          </div>
