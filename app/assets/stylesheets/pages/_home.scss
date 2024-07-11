@@ -253,6 +253,21 @@ p {
   background-color: #f3efef;
 }
 
+.container-list label{
+  color: #afaeae;
+  margin-bottom: 10px;
+}
+
+.field div {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.field {
+  display: flex; /* Make the field container a flexbox */
+  flex-direction: column; /* Stack elements vertically */
+}
+
 .list-text {
   color: rgb(45, 45, 102);
   text-align: left;
@@ -272,6 +287,27 @@ p {
 
 @media (max-width: 768px) {
   .actions input {
+    width: 100%;
+  }
+}
+
+.sign-up-btn{
+  padding: 10px 20px;
+  font-size: 20px;
+  height: 50px;
+  border-radius: 25px;
+  color: white;
+  background-color: #7c5bae;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .sign-up-btn {
     width: 100%;
   }
 }
