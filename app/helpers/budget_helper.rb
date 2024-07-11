@@ -5,7 +5,12 @@ module BudgetHelper
 
   # METHOD THAT RECEIVES A LIST OF PRODUCTS AND ADDS ITS PRICES THAT ARE CONVERTED TO BIGDECIMALS AND NILS TO ZEROS
   def list_price_sum(products)
-    return products.sum { |product| BigDecimal(product[:price] || 0) }
+    # return products.sum { |product| BigDecimal(product[:price] || 0) }
+    total = products.sum do |product|
+      product[:quantity] * product[:price]
+    end
+    puts total
+    return total
   end
 
   # METHOD THAT RECEIVES THE BUDGET OF A LIST AND THE SUM OF ALL THE PRICES OF ITS PRODUCTS AND RETURNS THE DIFFERENCE
@@ -14,6 +19,7 @@ module BudgetHelper
     return left
   end
 
+  # METHOD THAT RECEIVES THE TOTAL SPENT, THE BUDGET AND RETURNS THE SPENT PERCENTAGE
   def spent_percentage(spent, total_budget)
     spent_percentage = (spent / total_budget) * 100
     puts "SPENT PERCENTAGE"
@@ -21,10 +27,20 @@ module BudgetHelper
     return spent_percentage
   end
 
+  # METHOD THAT RECEIVES THE REMAINING BUDGET, TOTAL BUDGET, AND RETURNS WHATS LEFT OF BUDGET IN PERCENTAGE
   def remaining_budget_percentage(left, total_budget)
     puts "REMAINING BUDGET TO SPEND PERCENTAGE"
     remaining_percentage = (left / total_budget) * 100
     puts remaining_percentage
     return remaining_percentage
+  end
+
+  # METHOD THAT RETURNS TRUE IF THE SPENT VALUE SURPASSES THE TOTAL AVAILABLE BUDGET
+  def surpass_budget(spent, total_budget)
+    check = false
+    if spent > total_budget
+      check = true
+    end
+    return check
   end
 end
