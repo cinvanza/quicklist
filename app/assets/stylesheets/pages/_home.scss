@@ -253,6 +253,21 @@ p {
   background-color: #f3efef;
 }
 
+.container-list label{
+  color: #afaeae;
+  margin-bottom: 10px;
+}
+
+.field div {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.field {
+  display: flex; /* Make the field container a flexbox */
+  flex-direction: column; /* Stack elements vertically */
+}
+
 .list-text {
   color: rgb(45, 45, 102);
   text-align: left;
