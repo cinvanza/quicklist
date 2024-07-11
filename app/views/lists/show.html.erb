@@ -13,7 +13,7 @@
             <h1 style='text-align: center; font-size: 18px;'><strong> <%= @list.name %>! </strong></h1>
           </div>
           <div class= 'd-flex flex-row-reverse'>
-          <!--ADD GUEST OR SHARE LIST-->
+            <!--ADD GUEST OR SHARE LIST-->
             <%=render 'shared/search_user' %>
               <!--ADD A NEW PRODUCT-->
             <%=render 'shared/search_products' %>
@@ -24,7 +24,7 @@
             </div>
 
           </div>
-
+        </div>
         <!--BUDGET SECTION AND LIST CREATION DATE-->
         <div class="row mb-3 mt-5">
           <div class="col-12" style="text-align: center">
@@ -69,17 +69,12 @@
             </div>
           </div>
           <% else %>
-            <% @list.products.each do |product| %>
-              <div class="col-12 card budget-card-bg">
-                <div class="row g-0 m-3">
-                  <div class="col-2"><input class="form-check-input me-1" type="checkbox" value=""></div>
-                  <div class="col-8" style="text-align: left"><%= product.name %></div>
-                  <div class="col-2" style="text-align: right"><%= link_to edit_list_product_path(@list, product) do %><i class="fa-solid fa-ellipsis fa-xl" style="color: #7c5bae"></i><% end %></div>
-                  </div>
-                </div>
+            <div id="products">
+              <% @list.products.each do |product| %>
+                <%= render "products/product", product: product %>
               <% end %>
+            </div>
           <% end %>
-          </div>
           <%= link_to 'View Reviews', list_reviews_path(@list),  class:"violet-button mt-3"%>
         </div>
 
