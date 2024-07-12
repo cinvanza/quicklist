@@ -7,13 +7,15 @@
         <!--TOP MENU NAVBAR-->
         <div class="row mb-3 mt-3">
           <div class="col-2 center-icon px-1 pt-1">
-            <%= link_to lists_path do %><i class="fa-solid fa-circle-chevron-left fa-xl" style="color: #7c5bae;"></i><% end %>
+            <%= link_to lists_path do %><i class="fa-solid fa-circle-chevron-left fa-xl" style="color: #7c5bae;"></i>
+            <% end %>
           </div>
           <div class="col-6 pt-1 px-8">
             <h1 style='text-align: left; font-size: 18px;'><strong> <%= @list.name %>! </strong></h1>
           </div>
           <div class="col-1 center-icon px-1 pt-1">
-              <%= link_to edit_list_path do %><i class="fa-solid fa-pen-to-square" style="color: #7c5bae;"></i><% end %>
+              <%= link_to edit_list_path do %><i class="fa-solid fa-pen-to-square" style="color: #7c5bae;"></i>
+              <% end %>
           </div>
           <!--ADD A NEW PRODUCT-->
           <div class="col-1 center-icon px-1 pt-1">
@@ -70,17 +72,12 @@
             </div>
           </div>
           <% else %>
-            <% @list.products.each do |product| %>
-              <div class="col-12 card budget-card-bg">
-                <div class="row g-0 m-3">
-                  <div class="col-2"><input class="form-check-input me-1" type="checkbox" value="<%= product.id %>"><%= 'checked' if product.checked %></div>
-                  <div class="col-8" style="text-align: left"><%= product.name %></div>
-                  <div class="col-2" style="text-align: right"><%= link_to edit_list_product_path(@list, product) do %><i class="fa-solid fa-ellipsis fa-xl" style="color: #7c5bae"></i><% end %></div>
-                  </div>
-                </div>
+            <div id="products">
+              <% @list.products.each do |product| %>
+                <%= render "products/product", product: product %>
               <% end %>
+            </div>
           <% end %>
-          </div>
           <%= link_to 'View Reviews', list_reviews_path(@list),  class:"violet-button mt-3"%>
         </div>
 

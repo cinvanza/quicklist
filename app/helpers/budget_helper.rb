@@ -7,7 +7,14 @@ module BudgetHelper
   def list_price_sum(products)
     # return products.sum { |product| BigDecimal(product[:price] || 0) }
     total = products.sum do |product|
-      product[:quantity] * product[:price]
+      if product.quantity.present?
+        product_quantity = product.quantity
+        product_price = product.price
+      else
+        product_quantity = 0
+        product_price = 0
+      end
+      product_quantity * product_price
     end
     puts total
     return total
