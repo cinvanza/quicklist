@@ -1,11 +1,34 @@
 <div class="col-12 card budget-card-bg">
   <div class="row g-0 m-3">
-    <div class="col-2"><input class="form-check-input me-1" type="checkbox" value=""></div>
+    <div class="col-2">
+      <input class="form-check-input me-1 product-checkbox" type="checkbox" value="">
+    </div>
     <div class="col-8" style="text-align: left"><%= product.name %></div>
     <div class="col-2" style="text-align: right">
-     <%= link_to edit_list_product_path(@list, product) do %>
-      <i class="fa-solid fa-ellipsis fa-xl" style="color: #7c5bae"></i>
+      <%= link_to edit_list_product_path(@list, product) do %>
+        <i class="fa-solid fa-ellipsis fa-xl" style="color: #7c5bae"></i>
       <% end %>
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll(".product-checkbox").forEach((checkbox, index) => {
+      const storageKey = `product-checkbox-${index}`;
+
+      // Load checkbox state from local storage
+      const isChecked = localStorage.getItem(storageKey) === "true";
+      checkbox.checked = isChecked;
+
+      // Save or remove checkbox state in local storage when it changes
+      checkbox.addEventListener("change", function() {
+        if (checkbox.checked) {
+          localStorage.setItem(storageKey, "true");
+        } else {
+          localStorage.removeItem(storageKey);
+        }
+      });
+    });
+  });
+</script>
