@@ -1,4 +1,4 @@
-<div class="edit-list mt-3 mb-3">
+<div class="edit-list">
 <h1>Edit your list</h1>
 
 <%= simple_form_for @list, url: edit_list_path(@list), remote: true do |form| %>
@@ -26,7 +26,7 @@
       <%= form.input :tag_id, label: "Tag", collection: Tag.all %>
     </div>
 
-  <div class="actions text-center violet_button">
+  <div class="actions new-btn">
     <%= form.submit %>
   </div>
 <% end %>
