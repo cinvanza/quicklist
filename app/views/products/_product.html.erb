@@ -2,6 +2,9 @@
   <div class="row g-0 m-3">
     <div class="col-2">
       <input class="form-check-input me-1 product-checkbox" type="checkbox" value="">
+      <!--<%= simple_form_for [@list, product], html: {class:"my-0"} ,method: :patch do |f| %>
+        <%= f.input :checked, as: :boolean, label: false, input_html: { class:"form-check-input my-0" }, wrapper_html: { class:"my-0" } %>
+      <% end %> -->
     </div>
     <div class="col-8" style="text-align: left"><%= product.name %></div>
     <div class="col-2" style="text-align: right">
