@@ -87,18 +87,3 @@
   </div>
   <%= render 'shared/search_products' %>
 </div>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    let productCheckboxes = document.querySelectorAll('input[type="checkbox"]');
-
-    productCheckboxes.forEach(function(checkbox) {
-      checkbox.addEventListener('change', function() {
-        localStorage.setItem(checkbox.value, checkbox.checked);
-      });
-
-      let isChecked = localStorage.getItem(checkbox.value) === 'true';
-      checkbox.checked = isChecked;
-    });
-  });
-</script>
