@@ -5,7 +5,6 @@ module BudgetHelper
 
   # METHOD THAT RECEIVES A LIST OF PRODUCTS AND ADDS ITS PRICES THAT ARE CONVERTED TO BIGDECIMALS AND NILS TO ZEROS
   def list_price_sum(products)
-    # return products.sum { |product| BigDecimal(product[:price] || 0) }
     total = products.sum do |product|
       if product.quantity.present?
         product_quantity = product.quantity
@@ -50,4 +49,5 @@ module BudgetHelper
     end
     return check
   end
+
 end
