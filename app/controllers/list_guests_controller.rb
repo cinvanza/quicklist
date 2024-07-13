@@ -6,6 +6,7 @@ class ListGuestsController < ApplicationController
   def create
     success_count = 0
     failure_count = 0
+    already_exists_count = 0
 
     params[:user_ids].each do |user_id|
       next if user_id.blank?
@@ -33,7 +34,19 @@ class ListGuestsController < ApplicationController
       flash[:alert] = "#{failure_count} user(s) could not be added."
     end
 
+    if already_exists_count > 0
+      flash[:alert] = "#{already_exists_count} user(s) already in the list."
+    end
+
     redirect_to list_path(params[:list_id])
+  end
+
+  def destroy
+    @list_guest = ListGuest.find(params[:id])
+    @list = @list_guest.list
+    @list_guest.destroy
+    redirect_to @list, notice: 'Guest was successfully removed.'
+
   end
 
   private

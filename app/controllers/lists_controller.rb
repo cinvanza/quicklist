@@ -11,6 +11,8 @@ class ListsController < ApplicationController
   def show
     @list = List.find(params[:id])
     @review = Review.new
+    @list_guest = @list.list_guests.new
+    @list_guests = @list.list_guests.includes(:user)
   end
 
   def new
