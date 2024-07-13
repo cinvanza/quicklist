@@ -1,0 +1,16 @@
+<div class="col-4">
+  <div class="card guest" style="padding: 2px; margin: 2px; font-size: 12px; position: relative;">
+    <div class="card-body" style="padding: 2px;">
+      <div class="row">
+        <div class="col-10">
+          <p style="font-size: 12px; margin: 0;"><strong><%= list_guest.user.first_name %></strong></p>
+        </div>
+        <div class="col-2" style="text-align: right;">
+          <%= link_to list_list_guest_path(list_guest.list, list_guest), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' }, style: "color: red;" do %>
+            <i class="fa fa-times"></i>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

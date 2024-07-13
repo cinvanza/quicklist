@@ -26,6 +26,21 @@
           </div>
         </div>
 
+        <!--INVITED GUESTS SECTION-->
+        <div class="row mb-3">
+          <div class="col-12">
+            <h1 style="text-align: left; font-size: 15px"><strong>Invitados</strong></h1>
+            <% if @list_guests.any? %>
+              <div class="row">
+                <%= render partial: 'shared/list_guest', collection: @list_guests, as: :list_guest, locals: { list: @list } %>
+              </div>
+            <% else %>
+              <p>No hay invitados todavía.</p>
+            <% end %>
+          </div>
+        </div>
+
+
         <!--BUDGET SECTION AND LIST CREATION DATE-->
         <div class="row mb-3 mt-5">
           <div class="col-12" style="text-align: center">

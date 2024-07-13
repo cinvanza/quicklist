@@ -33,7 +33,9 @@
                   <button class="list-button list-button-text" style="background-color: <%= minimalistic_colors[(listas_index * 2 + index) % minimalistic_colors.size] %>">
                     <%= link_to list.name, list_path(list), class: "list-button-text" %>
                     <% if list.tag %>
+                      <%= link_to list_path(list) do %>
                       <i class="fa-solid fa-<%= list.tag.image %> list-icon" style= "color:#ffffff "></i>
+                      <% end %>
                     <% else %>
                         <i class="fa-solid fa-gift list-icon" style="color: #ffffff;"></i>
                      <% end %>
