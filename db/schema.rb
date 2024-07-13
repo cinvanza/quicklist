@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_11_225900) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_13_183332) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,6 +69,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_11_225900) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "chatroom_id", null: false
+    t.decimal "spent"
     t.index ["chatroom_id"], name: "index_lists_on_chatroom_id"
     t.index ["supermarket_id"], name: "index_lists_on_supermarket_id"
     t.index ["tag_id"], name: "index_lists_on_tag_id"
@@ -162,4 +163,4 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_11_225900) do
   add_foreign_key "reviews", "users"
   add_foreign_key "user_lists", "chatrooms"
   add_foreign_key "user_lists", "users"
-end
+)=end

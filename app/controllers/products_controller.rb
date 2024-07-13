@@ -36,20 +36,32 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @list = List.find(params[:list_id])
     @product.list = @list
-    @product.update(product_params)
-    redirect_to list_path(@product.list)
+
+
+    if @product.update(product_params)
+      if @product.checked_changed?
+        if @product.checked?
+          return @list.spent += @product.price
+        else
+          return @list.spent -= @product.price
+        end
+      end
+      redirect_to list_path(@list)
+    else
+      render :edit
+    end
   end
 
-  def destroy
-    @list = List.find(params[:list_id])
-    @product = @list.products.find(params[:id])
-    @product.destroy
-    redirect_to @list, notice: 'Product was successfully deleted.'
-  end
+    def destroy
+      @list = List.find(params[:list_id])
+      @product = @list.products.find(params[:id])
+      @product.destroy
+      redirect_to @list, notice: 'Product was successfully deleted.'
+    end
 
-  private
+    private
+    def product_params
+        params.require(:product).permit(:name, :quantity, :price, :checked)
+    end
 
-  def product_params
-    params.require(:product).permit(:name, :quantity, :price)
   end
-end
