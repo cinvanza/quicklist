@@ -1,12 +1,12 @@
 <div class="add-container">
   <div class="card main-card-rounded w-100" style="border-style: none">
-    <div class="row mb-3 mt-3">
+    <div class="row mb-4 mt-3">
       <div class="col-2 center-icon px-1 pt-1">
         <%= link_to list_path(@list) do %><i class="fa-solid fa-circle-chevron-left fa-xl" style="color: #7c5bae;"></i>
         <% end %>
       </div>
       <div class="col-8 pt-1 px-8">
-          <h1 style='text-align: center; font-size: 18px; margin-bottom: 1px'><strong>Edit Product</strong></h1>
+          <h1 style='text-align: left; font-size: 18px; margin-bottom: 1px'><strong>Edit Product</strong></h1>
           </div>
       <div class="col-2 center-icon px-1 pt-1">
         <%= link_to list_product_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %><i class="fa-solid fa-trash" style="color: #da0b20;"></i>
