@@ -48,12 +48,12 @@ class ProductsController < ApplicationController
     @list = List.find(params[:list_id])
     @product = @list.products.find(params[:id])
     @product.destroy
-    redirect_to @list, notice: 'Product was successfully deleted.'
+    redirect_to list_path(@list), status: :see_other
   end
 
   private
 
   def product_params
-    params.require(:product).permit(:name, :price)
+    params.require(:product).permit(:name, :price, :quantity, :brand)
   end
 end
