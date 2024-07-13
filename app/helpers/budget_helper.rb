@@ -50,4 +50,5 @@ module BudgetHelper
     end
     return check
   end
+
 end

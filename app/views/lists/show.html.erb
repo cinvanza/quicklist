@@ -63,12 +63,25 @@
             </div>
             <div class="row">
               <div class="col-12 mb-4">
-                <div class="progress" style="">
-                  <!--BUDGET SPENT-->
-                  <div class="progress-bar" role="progressbar" style="width:<%= spent_percentage(list_price_sum(@list.products), @list.budget) %>%;" aria-valuenow="<%= spent_percentage(list_price_sum(@list.products), @list.budget) %>" aria-valuemin="0" aria-valuemax="100"></div>
-                  <!--REMAINING BUDGET TO SPEND-->
-                  <div class="progress-bar bg-success" role="progressbar" style="width:<%= remaining_budget_percentage(left_to_spend(@list.budget, list_price_sum(@list.products)), @list.budget)%>%;" aria-valuenow="<%= remaining_budget_percentage(left_to_spend(@list.budget, list_price_sum(@list.products)), @list.budget)%>" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
+                <% if surpass_budget(list_price_sum(@list.products), @list.budget) == false %>
+                  <div class="progress" style="">
+                    <!--BUDGET SPENT-->
+                    <div class="progress-bar" role="progressbar" style="width:<%= spent_percentage(list_price_sum(@list.products), @list.budget) %>%;" aria-valuenow="<%= spent_percentage(list_price_sum(@list.products), @list.budget) %>" aria-valuemin="0" aria-valuemax="100">
+                    </div>
+                    <!--REMAINING BUDGET TO SPEND-->
+                    <div class="progress-bar bg-success" role="progressbar" style="width:<%= remaining_budget_percentage(left_to_spend(@list.budget, list_price_sum(@list.products)), @list.budget)%>%;" aria-valuenow="<%= remaining_budget_percentage(left_to_spend(@list.budget, list_price_sum(@list.products)), @list.budget)%>" aria-valuemin="0" aria-valuemax="100">
+                    </div>
+                  </div>
+                <% else %>
+                  <div class="progress" style="">
+                    <!--BUDGET SPENT-->
+                    <div class="progress-bar bg-danger" role="progressbar" style="width:<%= spent_percentage(list_price_sum(@list.products), @list.budget) %>%;" aria-valuenow="<%= spent_percentage(list_price_sum(@list.products), @list.budget) %>" aria-valuemin="0" aria-valuemax="100">
+                    </div>
+                    <!--REMAINING BUDGET TO SPEND-->
+                    <div class="progress-bar bg-danger" role="progressbar" style="width:<%= remaining_budget_percentage(left_to_spend(@list.budget, list_price_sum(@list.products)), @list.budget)%>%;" aria-valuenow="<%= remaining_budget_percentage(left_to_spend(@list.budget, list_price_sum(@list.products)), @list.budget)%>" aria-valuemin="0" aria-valuemax="100">
+                    </div>
+                  </div>
+                <% end %>
               </div>
             </div>
           </div>
