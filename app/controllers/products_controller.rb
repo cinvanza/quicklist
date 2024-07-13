@@ -39,7 +39,6 @@ class ProductsController < ApplicationController
     @list = List.find(params[:list_id])
     @product.list = @list
 
-
     if @product.update(product_params)
       if @product.checked_changed?
         if @product.checked?
@@ -51,6 +50,12 @@ class ProductsController < ApplicationController
       redirect_to list_path(@list)
     else
       render :edit
+    end
+
+    if @product.update(product_params)
+      redirect_to list_path(@product.list)
+    else
+      render "list/show", status: :unprocessable_entity, alert: flash[:alert] = "Product not updated!"
     end
   end
 
