@@ -21,6 +21,8 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     @list = List.find(params[:list_id])
+    @product.quantity = 1
+    @product.price = 0
     @product.list = @list
     if @product.save
       respond_to do|format|
@@ -64,4 +66,4 @@ class ProductsController < ApplicationController
         params.require(:product).permit(:name, :quantity, :price, :checked)
     end
 
-  end
+end
