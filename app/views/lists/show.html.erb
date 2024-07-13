@@ -11,7 +11,7 @@
             <% end %>
           </div>
           <div class="col-6 pt-1 px-8">
-            <h1 style='text-align: left; font-size: 18px;'><strong> <%= @list.name %>! </strong></h1>
+            <h1 style='text-align: left; font-size: 18px;'><strong> <%= @list.name %> </strong></h1>
           </div>
           <div class="col-1 center-icon px-1 pt-1">
               <%= link_to edit_list_path do %><i class="fa-solid fa-pen-to-square" style="color: #7c5bae;"></i>
@@ -25,6 +25,23 @@
             <%= link_to list_path(@list), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %><i class="fa-solid fa-trash" style="color: #da0b20;"></i><% end %>
           </div>
         </div>
+
+        <!--INVITED GUESTS SECTION-->
+        <!--INVITED GUESTS SECTION-->
+        <% if @list_guests.any? %>
+          <div class="row m-3">
+            <div class="col-12">
+              <div class="row">
+                <div class="col-10 mt-2">
+                  <h1 style="text-align: left; font-size: 15px;"><strong>Guests</strong></h1>
+                </div>
+              </div>
+              <div class="row">
+                <%= render partial: 'shared/list_guest', collection: @list_guests, as: :list_guest, locals: { list: @list } %>
+              </div>
+            </div>
+          </div>
+        <% end %>
 
         <!--BUDGET SECTION AND LIST CREATION DATE-->
         <div class="row mb-3 mt-5">
