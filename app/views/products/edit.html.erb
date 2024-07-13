@@ -1,7 +1,19 @@
-<h1>Edit Product</h1>
+<div class="add-container">
+  <div class="card main-card-rounded w-100" style="border-style: none">
+    <div class="row mb-3 mt-3">
+      <div class="col-2 center-icon px-1 pt-1">
+        <%= link_to list_path(@list) do %><i class="fa-solid fa-circle-chevron-left fa-xl" style="color: #7c5bae;"></i>
+        <% end %>
+      </div>
+      <div class="col-8 pt-1 px-8">
+          <h1 style='text-align: center; font-size: 18px; margin-bottom: 1px'><strong>Edit Product</strong></h1>
+          </div>
+      <div class="col-2 center-icon px-1 pt-1">
+        <%= link_to list_product_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %><i class="fa-solid fa-trash" style="color: #da0b20;"></i>
+        <% end %>
+      </div>
+    </div>
 
-<div class="container">
-  <div class="card shadow-sm">
     <div class="card-body">
       <%= simple_form_for [@list, @product] do |f| %>
         <div class="mb-3">
@@ -10,9 +22,14 @@
         <div class="mb-3">
           <%= f.input :price, class: "form-control" %>
         </div>
-        <div class="d-flex justify-content-end">
-          <%= link_to 'Back', list_path(@list), class: "btn btn-secondary me-auto" %>
-          <%= f.button :submit, "Update Product", class: "btn btn-primary" %>
+        <div class="mb-3">
+          <%= f.input :quantity, class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <%= f.input :brand, class: "form-control" %>
+        </div>
+        <div class="violet-button">
+          <%= f.button :submit, "Update Product", class: 'violet-button', style: 'font-size:16px' %>
         </div>
       <% end %>
     </div>
