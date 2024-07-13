@@ -8,7 +8,7 @@
     <div class="modal-dialog custom-modal" role="document">
       <div class="modal-content" data-controller="dictionary">
         <div class="modal-body pt-4">
-          <%= form_with(model: Product.new, url: list_products_path(params[:id]), method: :post, local: true) do |form| %>
+          <%= form_with(model: Product.new, url: list_products_path(params[:id]), method: :post, turbo: true ) do |form| %>
             <div class="field">
               <input name="product[name]"
                      class="form-control"
