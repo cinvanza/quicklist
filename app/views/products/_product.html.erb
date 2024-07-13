@@ -20,6 +20,7 @@
       // Load checkbox state from local storage
       const isChecked = localStorage.getItem(storageKey) === "true";
       checkbox.checked = isChecked;
+      product.checked = true;
 
       // Save or remove checkbox state in local storage when it changes
       checkbox.addEventListener("change", function() {
