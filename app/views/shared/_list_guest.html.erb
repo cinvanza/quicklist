@@ -1,14 +1,16 @@
-<div class="col-4 card budget-card-bg">
-  <div class="row g-0 m-3">
-    <div class="col-10">
-      <p style="font-size: 12px; margin: 0;">
-        <strong><%= list_guest.user.first_name %> <%= list_guest.user.last_name %></strong>
-      </p>
-    </div>
-    <div class="col-2" style="text-align: right;">
-      <%= link_to list_list_guest_path(list_guest.list, list_guest), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' }, style: "color: red;" do %>
-        <i class="fa fa-times"></i>
-      <% end %>
+<div class="col-4 mb-3">
+  <div class="card budget-card-bg" style="padding: 10px; margin: 5px; font-size: 12px;">
+    <div class="row g-0">
+      <div class="col-10">
+        <p style="font-size: 12px; margin: 0;">
+          <strong><%= list_guest.user.first_name %> <%= list_guest.user.last_name %></strong>
+        </p>
+      </div>
+      <div class="col-2 text-end">
+        <%= link_to list_list_guest_path(list_guest.list, list_guest), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, style: "color: red;" do %>
+          <i class="fa fa-times"></i>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
