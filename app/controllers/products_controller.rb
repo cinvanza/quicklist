@@ -21,6 +21,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     @list = List.find(params[:list_id])
+    @product.quantity = 1
     @product.list = @list
     if @product.save
       respond_to do|format|
@@ -36,8 +37,11 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @list = List.find(params[:list_id])
     @product.list = @list
-    @product.update(product_params)
-    redirect_to list_path(@product.list)
+    if @product.update(product_params)
+      redirect_to list_path(@product.list)
+    else
+      render "list/show", status: :unprocessable_entity, alert: flash[:alert] = "Product not updated!"
+    end
   end
 
   def destroy
@@ -50,6 +54,6 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :quantity, :price)
+    params.require(:product).permit(:name, :price)
   end
 end
