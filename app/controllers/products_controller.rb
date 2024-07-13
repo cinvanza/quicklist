@@ -38,6 +38,20 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @list = List.find(params[:list_id])
     @product.list = @list
+
+    if @product.update(product_params)
+      if @product.checked_changed?
+        if @product.checked?
+          return @list.spent += @product.price
+        else
+          return @list.spent -= @product.price
+        end
+      end
+      redirect_to list_path(@list)
+    else
+      render :edit
+    end
+
     if @product.update(product_params)
       redirect_to list_path(@product.list)
     else
@@ -53,8 +67,8 @@ class ProductsController < ApplicationController
   end
 
   private
+   def product_params
+     params.require(:product).permit(:name, :quantity, :price, :checked)
+   end
 
-  def product_params
-    params.require(:product).permit(:name, :price, :quantity, :brand)
   end
-end

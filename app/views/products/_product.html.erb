@@ -1,10 +1,12 @@
 <div class="col-12 card budget-card-bg">
   <div class="row g-0 m-3">
     <div class="col-2">
-      <input class="form-check-input me-1 product-checkbox" type="checkbox" value="">
-      <!--<%= simple_form_for [@list, product], html: {class:"my-0"} ,method: :patch do |f| %>
-        <%= f.input :checked, as: :boolean, label: false, input_html: { class:"form-check-input my-0" }, wrapper_html: { class:"my-0" } %>
-      <% end %> -->
+      <input type="checkbox"
+             name="product-<%= product.id %>"
+             id="product-<%= product.id %>"
+             class="form-check-input me-1 product-checkbox"
+             data-product-id="<%= product.id %>"
+             <%= 'checked' if product.checked == true %>>
     </div>
     <div class="col-8" style="text-align: left"><%= product.name %></div>
     <div class="col-2" style="text-align: right">
@@ -17,21 +19,33 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    document.querySelectorAll(".product-checkbox").forEach((checkbox, index) => {
-      const storageKey = `product-checkbox-${index}`;
+  document.querySelectorAll(".product-checkbox").forEach(function(checkbox) {
+    checkbox.addEventListener("change", function() {
+      const productId = this.dataset.product_id;
+      const checked = this.checked;
+      const url = `/lists/<%= @list.id %>/products/${productId}`;
 
-      // Load checkbox state from local storage
-      const isChecked = localStorage.getItem(storageKey) === "true";
-      checkbox.checked = isChecked;
-
-      // Save or remove checkbox state in local storage when it changes
-      checkbox.addEventListener("change", function() {
-        if (checkbox.checked) {
-          localStorage.setItem(storageKey, "true");
+      fetch(url, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+        },
+        body: JSON.stringify({ product: { checked: checked }, list_id: '<%= @list.id %>' })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          console.log(`Product ${checked ? 'checked' : 'unchecked'} successfully`);
         } else {
-          localStorage.removeItem(storageKey);
+          console.error("Failed to update product");
         }
-      });
+      })
+      .catch(error => console.error("Error:", error));
     });
   });
+});
+
+
+
 </script>
