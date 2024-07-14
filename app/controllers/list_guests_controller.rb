@@ -1,9 +1,11 @@
 class ListGuestsController < ApplicationController
   def new
+    @list = List.find(params[:list_id])
     @list_guest = ListGuest.new
   end
 
   def create
+    @list = List.find(params[:list_id])
     success_count = 0
     failure_count = 0
     already_exists_count = 0
@@ -22,6 +24,7 @@ class ListGuestsController < ApplicationController
           failure_count += 1
         end
       else
+
         failure_count += 1
       end
     end
