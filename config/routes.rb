@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :lists do
     resources :reviews, only: [:new, :create, :index]
     resources :products, only: [:new, :create, :edit, :update, :destroy]
-    resources :list_guests, only: [:new, :create]
+    resources :list_guests, only: [:new, :create, :destroy]
   end
   resources :reviews, only: [:show, :destroy]
   post '/lists/new' => 'lists#create'
