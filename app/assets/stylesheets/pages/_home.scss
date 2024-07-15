@@ -2,12 +2,12 @@
 .container {
   display: flex;
   flex-direction: column;
-  padding:20px;
+  padding: 20px;
   width: 100%;
   box-sizing: border-box;
-  background-color: white;
-  height: 832px;
+
 }
+
 
 .container h2 {
   align-items: flex-start;
@@ -349,3 +349,6 @@ p {
 .form-control {
   border: none;
 }
+
+
+/* Ensure the div takes full width and adjusts height based on content or a set value */

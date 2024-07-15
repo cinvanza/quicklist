@@ -35,40 +35,40 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product = Product.find(params[:id])
-    @list = List.find(params[:list_id])
+    @product = Product.find(params[:id].to_i)
+    @list = List.find(params[:list_id].to_i) || List.find(params[:product][:list_id].to_i)
     @product.list = @list
+    new_checked = params[:product][:checked]
 
-    if @product.update(product_params)
-      if @product.checked_changed?
-        if @product.checked?
-          return @list.spent += @product.price
-        else
-          return @list.spent -= @product.price
-        end
+    if @product.checked != params[:product][:checked]
+      if new_checked
+        @list.spent += @product.price
+      elsif !new_checked && @list.spent >= 0
+        @list.spent -= @product.price
       end
-      redirect_to list_path(@list)
-    else
-      render :edit
     end
 
     if @product.update(product_params)
-      redirect_to list_path(@product.list)
+      @list.save
+      respond_to do |format|
+        format.json { render json: { status: :ok } }
+        format.html { redirect_to @product.list }
+      end
     else
-      render "list/show", status: :unprocessable_entity, alert: flash[:alert] = "Product not updated!"
+      render "lists/show", status: :unprocessable_entity, alert: flash[:alert] = "Product not updated!"
     end
   end
 
-  def destroy
-    @list = List.find(params[:list_id])
-    @product = @list.products.find(params[:id])
-    @product.destroy
-    redirect_to list_path(@list), status: :see_other
-  end
+    def destroy
+      @list = List.find(params[:list_id])
+      @product = @list.products.find(params[:id])
+      @product.destroy
+      redirect_to @list, status: :see_other, notice: 'Product was successfully deleted.'
+    end
 
-  private
-   def product_params
-     params.require(:product).permit(:name, :quantity, :price, :checked)
-   end
+    private
+    def product_params
+        params.require(:product).permit(:name, :brand, :quantity, :price, :checked, :list_id)
+    end
 
-  end
+end
