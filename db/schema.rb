@@ -43,6 +43,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_14_193606) do
   end
 
   create_table "chatrooms", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "list_guests", force: :cascade do |t|
@@ -149,7 +152,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_14_193606) do
   add_foreign_key "lists", "supermarkets"
   add_foreign_key "lists", "tags"
   add_foreign_key "lists", "users"
+  add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
   add_foreign_key "reviews", "users"
+  add_foreign_key "user_lists", "chatrooms"
   add_foreign_key "user_lists", "users"
 end
