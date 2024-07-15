@@ -14,14 +14,19 @@
   <img src="<%= image_url('cover2.png') %>" alt="cover" />
 </div>
 
-<div class="footer">
-  <p>&copy; 2024 QuickList. All rights reserved.</p>
-  <ul class="footer-links">
-    <li><a href="#">Privacy Policy</a></li>
-    <li><a href="#">Terms of Service</a></li>
-    <li><a href="#">Contact Us</a></li>
-  </ul>
-</div>
+
+ <% unless user_signed_in? %>
+      <div class="footer">
+      <p>&copy; 2024 QuickList. All rights reserved.</p>
+      <ul class="footer-links">
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+  <% end %>
+
+
 
 <style>
   .banner, .banner-cover {
