@@ -13,7 +13,7 @@
     </div>
 
     <div class="card-body">
-      <%= simple_form_for @list, url: edit_list_path(@list), remote: true do |form| %>
+      <%= simple_form_for @list, url: list_path(@list), method: :patch, remote: true do |form| %>
         <div class="field">
           <%= form.input :name %>
         </div>
