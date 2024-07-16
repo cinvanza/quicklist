@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_13_192855) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_14_193606) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,14 +57,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_13_192855) do
     t.integer "access_type"
     t.float "budget"
     t.integer "status"
+    t.decimal "spent", precision: 8, scale: 2, default: "0.0"
     t.bigint "tag_id", null: false
     t.bigint "user_id", null: false
     t.bigint "supermarket_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "chatroom_id", null: false
-    t.decimal "spent"
-    t.index ["chatroom_id"], name: "index_lists_on_chatroom_id"
     t.index ["supermarket_id"], name: "index_lists_on_supermarket_id"
     t.index ["tag_id"], name: "index_lists_on_tag_id"
     t.index ["user_id"], name: "index_lists_on_user_id"
@@ -83,7 +81,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_13_192855) do
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "brand"
-    t.decimal "price"
+    t.decimal "price", precision: 8, scale: 2
     t.integer "quantity"
     t.bigint "list_id", null: false
     t.datetime "created_at", null: false
@@ -144,17 +142,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_13_192855) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "list_guests", "lists"
   add_foreign_key "list_guests", "users"
-  add_foreign_key "lists", "chatrooms"
   add_foreign_key "lists", "supermarkets"
   add_foreign_key "lists", "tags"
   add_foreign_key "lists", "users"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
-  add_foreign_key "products", "lists"
-  add_foreign_key "reviews", "lists"
   add_foreign_key "reviews", "users"
   add_foreign_key "user_lists", "chatrooms"
   add_foreign_key "user_lists", "users"
-)=end
+end
