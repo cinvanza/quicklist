@@ -36,7 +36,6 @@ class ListGuestsController < ApplicationController
     @list_guest = ListGuest.find(params[:id])
     @list = @list_guest.list
     @list_guest.destroy
-    redirect_to @list, notice: 'Guest was successfully removed.'
 
   end
 
