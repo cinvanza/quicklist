@@ -38,12 +38,13 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id].to_i)
     @list = List.find(params[:list_id].to_i) || List.find(params[:product][:list_id].to_i)
     @product.list = @list
+
     new_checked = params[:product][:checked]
 
     if @product.checked != params[:product][:checked]
       if new_checked
         @list.spent += @product.price
-      elsif !new_checked && @list.spent >= 0
+      elsif !new_checked && @list.spent > 0
         @list.spent -= @product.price
       end
     end
