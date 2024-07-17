@@ -1,34 +1,38 @@
-<div class="container-list">
-  <h1 class="list-text">New List</h1>
-  <%= simple_form_for @list, url: new_list_path, remote: true do |form| %>
-    <div class="field">
-      <%= form.input :name %>
-    </div>
-
-    <div class="field">
-      <label>Access Type:</label>
-      <div>
-        <%= form.radio_button :access_type, List::ACCESS_TYPES.first %>
-        <%= List::ACCESS_TYPES.first %>
+<div class="new-list">
+  <div class="card main-card-rounded w-100" style="border-style: none">
+    <div class="row mb-4 mt-3">
+      <div class="col-2 center-icon px-1 pt-1">
+        <%= link_to lists_path do %><i class="fa-solid fa-circle-chevron-left fa-xl" style="color: #7c5bae;"></i>
+        <% end %>
       </div>
-      <div>
-        <%= form.radio_button :access_type, List::ACCESS_TYPES.second %>
-        <%= List::ACCESS_TYPES.second %>
+      <div class="col-8 pt-1 px-8">
+        <h1 style='text-align: left; font-size: 18px; margin-bottom: 1px'><strong>New list</strong></h1>
       </div>
+      <div class="col-2 center-icon px-1 pt-1">
       </div>
-
-    <div class="field">
-      <%= form.input :budget, label: "Budget (Optional)" %>
     </div>
 
-    <div class="field">
-      <%= form.input :tag_id, label: "Tag", collection: Tag.all %>
-    </div>
+    <div class="card-body">
+      <%= simple_form_for @list, url: new_list_path, remote: true do |form| %>
+        <div class="field">
+          <%= form.input :name %>
+        </div>
 
-    <div class="actions new-btn">
-      <%= form.submit %>
+        <div class="field">
+          <%= form.input :budget, label: "Budget" %>
+        </div>
+
+        <div class="field">
+          <%= form.input :tag_id, label: "Tag", collection: Tag.all %>
+        </div>
+
+        <div class="actions new-btn mt-3">
+          <%= form.submit %>
+        </div>
+      <% end %>
+
+      <% if @list.errors.any? %>
+    <% end %>
     </div>
-  <% end %>
+  </div>
 </div>
-<% if @list.errors.any? %>
-  <% end %>
