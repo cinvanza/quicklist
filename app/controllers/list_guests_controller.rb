@@ -28,7 +28,6 @@ class ListGuestsController < ApplicationController
         failure_count += 1
       end
     end
-
     if success_count > 0
       flash[:notice] = "#{success_count} guest(s) were successfully created."
     end
@@ -49,7 +48,6 @@ class ListGuestsController < ApplicationController
     @list = @list_guest.list
     @list_guest.destroy
     redirect_to @list, notice: 'Guest was successfully removed.'
-
   end
 
   private

@@ -20,7 +20,7 @@ before_action :set_list, only: %i[new create index]
     @review.list_id = @list.id
     @review.user = current_user
     if @review.save
-      redirect_to list_reviews_path(@list), notice: 'Review posted successfully'
+      redirect_to list_reviews_path(@list)
     else
       render :new, status: :unprocessable_entity
     end

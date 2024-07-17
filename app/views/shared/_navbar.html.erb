@@ -12,11 +12,6 @@
             <i class="fa-solid fa-clipboard-list icon-color"></i>
           <% end %>
         </li>
-        <li class="nav-item">
-          <%= link_to lists_path, class: "text-center" do %>
-            <i class="fas fa-comments icon-color"></i>
-          <% end %>
-        </li>
         <li class="nav-item dropup">
           <a href="#" class="text-center" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <% if current_user.photo.present? %>
@@ -26,8 +21,6 @@
             <% end %>
           </a>
           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <%= link_to "Action", "#", class: "dropdown-item" %>
-            <%= link_to "Another action", "#", class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
           </div>
         </li>

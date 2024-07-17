@@ -17,6 +17,7 @@
         </div>
 
         <!--LIST CARDS WITH DIFFERENT COLORS-->
+        <% if @lists.any? %>
         <div class="mylists-grid-container">
           <% cont = 0 %>
           <% @lists.each_slice(2).with_index do |listas, listas_index| %>
@@ -46,7 +47,13 @@
             </div>
           <% end %>
         </div>
-
+        <% else %>
+          <div class="no-lists-message" style="text-align: center; margin-top: 50px;">
+            <h2>No lists available</h2>
+            <%= image_tag 'captura.png', alt: 'No lists available', style: 'max-width: 100%; height: auto;' %>
+            <p>Start by creating a new list using the plus icon above.</p>
+          </div>
+        <% end %>
       </div>
 
     </div>
