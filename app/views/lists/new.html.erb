@@ -6,19 +6,7 @@
     </div>
 
     <div class="field">
-      <label>Access Type:</label>
-      <div>
-        <%= form.radio_button :access_type, List::ACCESS_TYPES.first %>
-        <%= List::ACCESS_TYPES.first %>
-      </div>
-      <div>
-        <%= form.radio_button :access_type, List::ACCESS_TYPES.second %>
-        <%= List::ACCESS_TYPES.second %>
-      </div>
-      </div>
-
-    <div class="field">
-      <%= form.input :budget, label: "Budget (Optional)" %>
+      <%= form.input :budget, label: "Budget" %>
     </div>
 
     <div class="field">
