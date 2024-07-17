@@ -176,7 +176,7 @@
             <%= f.input :comment, label: 'Comment:' %>
             <%= f.input :rating, collection: (1..5).to_a, input_html: {data: {controller: "star-rating"}} %>
           <div class="d-grid gap-2 d-md-block">
-            <%= f.button :submit, "Post Review", class: 'btn btn-primary rounded'%>
+            <%= f.button :submit, "Post Review", class: 'rounded-button mt-3', style: 'font-size: 16px; height: 50px; width: 100%; border-radius: 40px'%>
           </div>
           <% end %>
         </div>

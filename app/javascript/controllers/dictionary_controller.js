@@ -14,8 +14,8 @@ export default class extends Controller {
         // Clear previous list items
         ul.innerHTML = '';
         // Insert new list items
-        data['words'].forEach((i) => {
-          ul.insertAdjacentHTML("beforeend", `<li data-action='click->dictionary#insertword'>${i}</li>`);
+        data['words'].slice(0, 5).forEach((i) => {
+          ul.insertAdjacentHTML("beforeend", `<li class="list-group-item" data-action='click->dictionary#insertword'><strong>${i}</strong></li>`);
         });
       });
   }

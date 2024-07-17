@@ -28,6 +28,17 @@ class ListGuestsController < ApplicationController
         failure_count += 1
       end
     end
+    if success_count > 0
+      flash[:notice] = "#{success_count} guest(s) were successfully created."
+    end
+
+    if failure_count > 0
+      flash[:alert] = "#{failure_count} user(s) could not be added."
+    end
+
+    if already_exists_count > 0
+      flash[:alert] = "#{already_exists_count} user(s) already in the list."
+    end
 
     redirect_to list_path(params[:list_id])
   end
@@ -36,7 +47,7 @@ class ListGuestsController < ApplicationController
     @list_guest = ListGuest.find(params[:id])
     @list = @list_guest.list
     @list_guest.destroy
-
+    redirect_to @list, notice: 'Guest was successfully removed.'
   end
 
   private

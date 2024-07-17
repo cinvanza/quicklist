@@ -29,10 +29,14 @@
 
   </head>
 
-   <body>
-   <%= render "shared/navbar" %>
-   <%= render "shared/flashes" %>
+<body>
+  <!-- Flash Alerts -->
+  <%= render "shared/flashes" %>
 
-    <%= yield %>
-  </body>
+  <!-- Navbar -->
+  <%= render "shared/navbar" %>
+
+  <!-- Content -->
+  <%= yield %>
+</body>
 </html>

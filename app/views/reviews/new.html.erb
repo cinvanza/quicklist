@@ -6,7 +6,7 @@
         <%= f.input :comment, label: 'Comment:' %>
         <%= f.input :rating, label: 'How do you rate this list?', collection: 0..5, prompt: "Provide a rating" %>
         <div class="d-grid gap-2 d-md-block">
-          <%= f.button :submit, "Post Review", class: 'btn btn-primary'%>
+          <%= f.button :submit, "Post Review", class: 'violet-button'%>
           <%= link_to 'Back', list_path(id: @list.id), class:'btn btn-outline-primary m-3'%>
         </div>
       <% end %>

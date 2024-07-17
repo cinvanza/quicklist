@@ -12,15 +12,15 @@
             <div class="field">
               <input name="product[name]"
                      class="form-control"
-                     placeholder="enter product"
+                     placeholder="Tap to search product"
                      data-dictionary-target="input"
                      data-action="keyup->dictionary#update"
                      id="product_name">
             </div>
-            <ul data-dictionary-target="data">
+            <ul class="list-group" data-dictionary-target="data">
             </ul>
             <div class="actions">
-              <%= form.submit 'Add product', class: 'rounded-button' %>
+              <%= form.submit 'Add product', class: 'rounded-button mt-3' %>
             </div>
           <% end %>
         </div>
