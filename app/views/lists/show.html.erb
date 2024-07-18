@@ -59,8 +59,8 @@
               <div class="col-6"><p id="titles"><i class="fa-solid fa-circle fa-sm" style="color: #0d6efd;"></i> Budget spent</p></div>
             </div>
             <div class="row">
-              <div class="col-6"><p id="amounts">$<%= left_to_spend(@list.budget, list_price_sum(@list.products)) %></p></div>
-              <div class="col-6"><p id="amounts">$<%= list_price_sum(@list.products) %></p></div>
+              <div class="col-6"><p id="amounts">$<span id='element-left-spent-amount' data-total-left-spent-amount="<%= left_to_spend(@list.budget, list_price_sum(@list.products)) %>"><%= left_to_spend(@list.budget, list_price_sum(@list.products)) %></span></p></div>
+              <div class="col-6"><p id="spent_amounts">$<span id='element-spent-amount' data-total-spent-amount="<%= @list.spent %>"><%= @list.spent %></span></p></div>
             </div>
             <div class="row">
               <div class="col-12 mb-4">
@@ -117,3 +117,44 @@
   </div>
   <%= render 'shared/search_products' %>
 </div>
+
+<script>
+  let totalSpent = parseInt(document.querySelector('#element-spent-amount').dataset.totalSpentAmount, 10);
+  let totalLeftSpent = parseInt(document.querySelector('#element-left-spent-amount').dataset.totalLeftSpentAmount, 10);
+
+  document.querySelectorAll(".product-checkbox").forEach(function(checkbox) {
+    checkbox.addEventListener("change", function() {
+      const productId = this.dataset.productId;
+      const checked = this.checked;
+      const productPrice = parseInt(this.dataset.productPrice, 10);
+      const url = `/lists/<%= @list.id %>/products/${productId}`;
+
+      fetch(url, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+        },
+        body: JSON.stringify({ product: { checked: checked, list_id: '<%= @list.id %>' } })
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status === 'ok') {
+            console.log(`Product ${checked ? 'checked' : 'unchecked'} successfully`);
+            if (checked) {
+              totalSpent += productPrice;
+              totalLeftSpent -= productPrice;
+            } else {
+              totalSpent -= productPrice;
+              totalLeftSpent += productPrice;
+            }
+            document.querySelector('#element-spent-amount').innerHTML = `${totalSpent}`;
+            document.querySelector('#element-left-spent-amount').innerHTML = `${totalLeftSpent}`;
+          } else {
+            console.error("Failed to update product");
+          }
+        })
+        .catch(error => console.error("Error:", error));
+    });
+  });
+</script>
