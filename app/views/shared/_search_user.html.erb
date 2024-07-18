@@ -7,12 +7,13 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog custom-modal" role="document">
     <div class="modal-content" data-controller="search-email">
-      <div class="modal-header">
+      <%# <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Add Guest to List</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
+        </button>
+      </div> %>
       <div class="modal-body">
         <%= form_with url: list_list_guests_path(@list), method: :post, local: true do |form| %>
           <div class="field">
@@ -26,7 +27,7 @@
         <% end %>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary rounded-button" data-dismiss="modal">Close</button>
+        <button type="button" class="close rounded-button" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
