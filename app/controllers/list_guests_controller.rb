@@ -1,4 +1,7 @@
 class ListGuestsController < ApplicationController
+  before_action :authenticate_user! # si estás usando Devise
+  before_action :set_list
+
   def new
     @list = List.find(params[:list_id])
     @list_guest = ListGuest.new
@@ -6,41 +9,29 @@ class ListGuestsController < ApplicationController
 
   def create
     @list = List.find(params[:list_id])
-    success_count = 0
-    failure_count = 0
-    already_exists_count = 0
+    guest_name = params[:guest_name]
 
-    params[:user_ids].each do |user_id|
-      next if user_id.blank?
+    if guest_name.blank?
+      flash[:alert] = "Guest name cannot be blank."
+    else
+      user = User.find_by(first_name: guest_name)
 
-      user = User.find_by(id: user_id)
-
-      if user
-        @list_guest = ListGuest.new(user: user, list_id: params[:list_id])
+      if user.nil?
+        flash[:alert] = "No user found with this name."
+      elsif ListGuest.exists?(list: @list, user: user)
+        flash[:alert] = "This guest is already in the list."
+      else
+        @list_guest = ListGuest.new(user: user, list: @list)
 
         if @list_guest.save
-          success_count += 1
+          flash[:notice] = "Guest was successfully added to the list."
         else
-          failure_count += 1
+          flash[:alert] = "Failed to add guest to the list."
         end
-      else
-
-        failure_count += 1
       end
     end
-    if success_count > 0
-      flash[:notice] = "#{success_count} guest(s) were successfully created."
-    end
 
-    if failure_count > 0
-      flash[:alert] = "#{failure_count} user(s) could not be added."
-    end
-
-    if already_exists_count > 0
-      flash[:alert] = "#{already_exists_count} user(s) already in the list."
-    end
-
-    redirect_to list_path(params[:list_id])
+    redirect_to list_path(@list)
   end
 
   def destroy
@@ -50,9 +41,20 @@ class ListGuestsController < ApplicationController
     redirect_to @list, notice: 'Guest was successfully removed.'
   end
 
+  def check_guest
+  @list = List.find(params[:list_id])
+  user = User.find_by(first_name: params[:name])
+  guest_exists = user && ListGuest.exists?(list: @list, user: user)
+  render json: { exists: guest_exists, valid_user: !user.nil? }
+  end
+
   private
 
   def list_guest_params
     params.require(:list_guest).permit(:list_id, :user_id)
+  end
+
+  def set_list
+    @list = List.find(params[:list_id])
   end
 end
