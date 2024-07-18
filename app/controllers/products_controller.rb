@@ -26,8 +26,8 @@ class ProductsController < ApplicationController
     @product.list = @list
     if @product.save
       respond_to do|format|
-        format.turbo_stream
         format.html {redirect_to list_path(@list), notice: 'Product was successfully created.'}
+        format.turbo_stream
       end
     else
       render :new, status: :unprocessable_entity

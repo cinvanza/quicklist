@@ -8,7 +8,7 @@
   <div class="modal-dialog custom-modal" role="document">
     <div class="modal-content" data-controller="search-email">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Select a guest</h5>
+
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -16,8 +16,8 @@
       <div class="modal-body">
         <%= form_with url: list_list_guests_path(params[:id]), method: :post, local: true do |form| %>
           <div class="field">
-            <%= form.label :email, "Enter Email" %>
-            <%= form.select :user_ids, User.all.map { |user| [user.email, user.id] }, {}, { id: 'select-state', multiple: true } %>
+            <%= form.label :first_name, "Enter Name" %>
+            <%= form.select :user_ids, User.all.map { |user| [user.first_name, user.id] }, {}, { id: 'select-state', multiple: true } %>
           </div>
 
           <div class="actions">
@@ -25,8 +25,8 @@
           </div>
         <% end %>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="rounded-button" data-dismiss="modal">Close</button>
+      <div class="actions modal-footer">
+        <button type="button" class="close rounded-button" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
