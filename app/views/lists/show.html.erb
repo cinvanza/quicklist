@@ -118,15 +118,18 @@
   <%= render 'shared/search_products' %>
 </div>
 
+
 <script>
   let totalSpent = parseInt(document.querySelector('#element-spent-amount').dataset.totalSpentAmount, 10);
   let totalLeftSpent = parseInt(document.querySelector('#element-left-spent-amount').dataset.totalLeftSpentAmount, 10);
+
 
   document.querySelectorAll(".product-checkbox").forEach(function(checkbox) {
     checkbox.addEventListener("change", function() {
       const productId = this.dataset.productId;
       const checked = this.checked;
       const productPrice = parseInt(this.dataset.productPrice, 10);
+      console.log(productPrice)
       const url = `/lists/<%= @list.id %>/products/${productId}`;
 
       fetch(url, {

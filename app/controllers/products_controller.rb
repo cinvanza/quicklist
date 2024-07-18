@@ -25,9 +25,11 @@ class ProductsController < ApplicationController
     @product.price = 0
     @product.list = @list
     if @product.save
+      flash[:notice] = 'Product added'
       respond_to do|format|
         format.html {redirect_to list_path(@list), notice: 'Product was successfully created.'}
         format.turbo_stream
+
       end
     else
       render :new, status: :unprocessable_entity
